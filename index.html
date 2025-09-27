@@ -364,7 +364,6 @@
             const selectionFeedback = document.getElementById('selection-feedback');
             const navWhatsAppBtn = document.getElementById('nav-whatsapp-btn');
             const footerWhatsAppBtn = document.getElementById('footer-whatsapp-btn');
-            const MAX_SELECTION = 5;
 
             // Render menu
             menuContainer.innerHTML = '';
@@ -422,33 +421,19 @@
                 footerWhatsAppBtn.href = finalUrl;
             };
 
-            const updateSelectionFeedback = (temporarilyShowWarning) => {
+            const updateSelectionFeedback = () => {
                 const { selected, total } = getSelectedItemsData();
-                selectionFeedback.classList.remove('text-red-500');
-                if (temporarilyShowWarning) {
-                    selectionFeedback.textContent = `You can select up to ${MAX_SELECTION} items.`;
-                    selectionFeedback.classList.add('text-red-500');
-                    if (warningTimeout) clearTimeout(warningTimeout);
-                    warningTimeout = setTimeout(() => updateSelectionFeedback(false), 2500);
-                    return;
-                }
                 if (selected.length === 0) {
-                    selectionFeedback.textContent = `Select up to ${MAX_SELECTION} items.`;
+                    selectionFeedback.textContent = `Select as many items as you like.`;
                 } else {
                     selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
                 }
             };
 
             itemCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener('change', (e) => {
-                    const currentSelectedCount = itemCheckboxes.filter(cb => cb.checked).length;
-                    if (checkbox.checked && currentSelectedCount > MAX_SELECTION) {
-                        checkbox.checked = false;
-                        updateSelectionFeedback(true);
-                        return;
-                    }
+                checkbox.addEventListener('change', () => {
                     updateWhatsAppLink();
-                    updateSelectionFeedback(false);
+                    updateSelectionFeedback();
                 });
             });
 
