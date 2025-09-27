@@ -143,6 +143,7 @@
     <script>
         // Replace the previous DOMContentLoaded script with the dynamic menu renderer and selection logic
         document.addEventListener('DOMContentLoaded', () => {
+            // Remove selection limit
             const menuData = [
                 {
                     category: "Sweet Treats",
@@ -236,16 +237,9 @@
 
             let warningTimeout = null;
 
-            const updateSelectionFeedback = (temporarilyShowWarning) => {
+            const updateSelectionFeedback = () => {
                 const { selected, total } = getSelectedItemsData();
                 selectionFeedback.classList.remove('text-red-500');
-                if (temporarilyShowWarning) {
-                    selectionFeedback.textContent = `You can select up to ${MAX_SELECTION} items.`;
-                    selectionFeedback.classList.add('text-red-500');
-                    if (warningTimeout) clearTimeout(warningTimeout);
-                    warningTimeout = setTimeout(() => updateSelectionFeedback(false), 2500);
-                    return;
-                }
                 if (selected.length === 0) {
                     selectionFeedback.textContent = `Select as many items as you like.`;
                 } else {
@@ -254,22 +248,15 @@
             };
 
             itemCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener('change', (e) => {
-                    const currentSelectedCount = getSelectedItemsRaw().length;
-                    if (checkbox.checked && currentSelectedCount > MAX_SELECTION) {
-                        // revert and warn
-                        checkbox.checked = false;
-                        updateSelectionFeedback(true);
-                        return;
-                    }
+                checkbox.addEventListener('change', () => {
                     updateWhatsAppLink();
-                    updateSelectionFeedback(false);
+                    updateSelectionFeedback();
                 });
             });
 
             // Initial setup
             updateWhatsAppLink();
-            updateSelectionFeedback(false);
+            updateSelectionFeedback();
         });
     </script>
 
