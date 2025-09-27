@@ -225,7 +225,7 @@
                 const { selected, total } = getSelectedItemsData();
                 let message;
                 if (selected.length > 0) {
-                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (approx). Each item is approx 150-180g. My desired pickup date and time is: [Please specify]`;
+                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). Each item is approx 150-180g. My desired pickup date and time is: [Please specify]`;
                 } else {
                     message = "Hi! I'd like to place an order for a Diwali hamper.";
                 }
