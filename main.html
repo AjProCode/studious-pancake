@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake Me a Wish - Exquisite Diwali Hampers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to extend Tailwind */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F3ECE7; /* Soft beige background */
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            /* The image 'IMG_4052.jpeg' should be in the same folder as this HTML file to appear. */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('IMG_4052.jpeg');
+        }
+        /* Custom button shadow for a bold look */
+        .btn-shadow {
+            box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);
+        }
+        .btn-shadow:hover {
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+        }
+        /* Style for custom checkbox */
+        .form-checkbox:checked {
+            background-color: #1E434B;
+            border-color: #1E434B;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <nav class="bg-[#F3ECE7]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 text-2xl font-bold text-[#1E434B]" style="font-family: 'Playfair Display', serif;">
+                <!-- The logo image should now appear correctly -->
+                <img src="Bake Me A wish Handmade with love.png" alt="Bake Me a Wish Logo" class="h-12 w-12 rounded-full object-cover">
+                Bake Me a Wish
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#treats" class="text-[#1E434B] hover:text-opacity-80 transition">Our Treats</a>
+                <a href="#order" class="text-[#1E434B] hover:text-opacity-80 transition">How to Order</a>
+            </div>
+            <a id="nav-whatsapp-btn" href="https://wa.me/917705982880?text=Hi! I'd like to place an order for a Diwali hamper." target="_blank" class="bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
+                Order on WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg bg-cover bg-center h-screen flex items-center justify-center text-white text-center">
+        <div class="bg-black bg-opacity-20 p-10 rounded-lg max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4">Exquisite Diwali Hampers for Your Loved Ones</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                Celebrate Diwali with our exquisite hampers, thoughtfully curated with a delightful blend of fusion desserts and savory treats. Fully customizable to suit your unique preferences!
+            </p>
+            <a href="#treats" class="bg-[#F3ECE7] text-[#1E434B] font-bold text-lg py-3 px-10 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
+                Build Your Hamper
+            </a>
+            <p class="mt-6 uppercase tracking-widest font-semibold">Limited Hampers - Prebook Now!</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Our Treats Section -->
+        <section id="treats" class="py-20 md:py-28">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-4">MYOH: Make Your Own Hamper</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Select up to 5 items for your custom hamper. Each item weighs approximately 150-180g, ensuring a generous portion of our freshly baked goodies.</p>
+
+                <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
+                    <img src="IMG_4052.jpeg" alt="Diwali Hamper" class="w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
+                    <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                        <!-- JS will populate this, but here are the items for static display -->
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Motichoor Rose Cake"><span class="font-semibold">Motichoor Rose Cake</span></div><span class="font-bold text-[#1E434B]">₹250</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Lemon Cheesecake Truffles (4 pcs)"><span class="font-semibold">Lemon Cheesecake Truffles (4 pcs)</span></div><span class="font-bold text-[#1E434B]">₹200</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Red Velvet Crinkle Button"><span class="font-semibold">Red Velvet Crinkle Button</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Everything Bagel Makhana Mix"><span class="font-semibold">Everything Bagel Makhana Mix</span></div><span class="font-bold text-[#1E434B]">₹200</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Citrus Crinkle Buttons"><span class="font-semibold">Citrus Crinkle Buttons</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Chili Lime Millet Snack Pack"><span class="font-semibold">Chili Lime Millet Snack Pack</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Karachi Biscuit"><span class="font-semibold">Karachi Biscuit</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Sriracha Cashews"><span class="font-semibold">Sriracha Cashews</span></div><span class="font-bold text-[#1E434B]">₹250</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Black Sesame Parmesan Sticks"><span class="font-semibold">Black Sesame Parmesan Sticks</span></div><span class="font-bold text-[#1E434B]">₹175</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Espresso Frosted Hazelnuts"><span class="font-semibold">Espresso Frosted Hazelnuts</span></div><span class="font-bold text-[#1E434B]">₹250</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Multi Millet Crackers"><span class="font-semibold">Multi Millet Crackers</span></div><span class="font-bold text-[#1E434B]">₹120</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Calcutta Paan Mukhwas"><span class="font-semibold">Calcutta Paan Mukhwas</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Ragel Crunch Fudge Bites (4 pcs)"><span class="font-semibold">Ragel Crunch Fudge Bites (4 pcs)</span></div><span class="font-bold text-[#1E434B]">₹150</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Brownie Brittle"><span class="font-semibold">Brownie Brittle</span></div><span class="font-bold text-[#1E434B]">₹200</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Nutella Fudge Bites (4 pcs)"><span class="font-semibold">Nutella Fudge Bites (4 pcs)</span></div><span class="font-bold text-[#1E434B]">₹200</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Loaded Badam Katli (4 pcs)"><span class="font-semibold">Loaded Badam Katli (4 pcs)</span></div><span class="font-bold text-[#1E434B]">₹240</span></label>
+                        <label class="flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 cursor-pointer hover:bg-gray-50 rounded-md"><div class="flex items-center"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="Sattu Apricot Bites (4 pcs)"><span class="font-semibold">Sattu Apricot Bites (4 pcs)</span></div><span class="font-bold text-[#1E434B]">₹200</span></label>
+                    </div>
+                    <div id="selection-feedback" class="mt-6 text-center font-semibold h-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Order Section -->
+        <section id="order" class="bg-[#1E434B] text-white py-20 md:py-28">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Simple Steps to Festive Gifting</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto mb-12">
+                    <!-- Step 1 -->
+                    <div class="bg-white/10 p-8 rounded-xl">
+                        <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">01</div>
+                        <h3 class="text-2xl font-bold mb-3">Curate Your Hamper</h3>
+                        <p class="text-gray-300">Browse our menu and choose up to 5 items for your perfect hamper.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-white/10 p-8 rounded-xl">
+                        <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">02</div>
+                        <h3 class="text-2xl font-bold mb-3">Note the Details</h3>
+                        <p class="text-gray-300">Allow us 2 days for preparation. Festive packaging is available for ₹150-200 extra to make your gift special.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-white/10 p-8 rounded-xl">
+                         <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">03</div>
+                        <h3 class="text-2xl font-bold mb-3">Place Your Order</h3>
+                        <p class="text-gray-300">Click to order via WhatsApp. Your items will be in the message. Just add your desired pickup date and time!</p>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-[#F3ECE7] p-6 rounded-lg max-w-3xl mx-auto mb-12">
+                    <h3 class="font-bold text-xl mb-2">IMPORTANT NOTICE</h3>
+                    <p class="text-lg">Please remember to place your orders before the <strong class="text-yellow-300">15th of October</strong> as we won't be accepting any after this date. Thank you!</p>
+                </div>
+
+                <a id="footer-whatsapp-btn" href="https://wa.me/917705982880?text=Hi! I'd like to place an order for a Diwali hamper." target="_blank" class="bg-[#F3ECE7] text-[#1E434B] font-bold text-xl py-4 px-12 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
+                    Order Now on WhatsApp
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1E434B] text-[#F3ECE7]/80 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl mb-2" style="font-family: 'Playfair Display', serif;">Bake Me a Wish</h3>
+            <p class="mb-4">Handmade with love in Lucknow.</p>
+            <p>&copy; 2025 Bake Me a Wish. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+            const navWhatsAppBtn = document.getElementById('nav-whatsapp-btn');
+            const footerWhatsAppBtn = document.getElementById('footer-whatsapp-btn');
+            const selectionFeedback = document.getElementById('selection-feedback');
+            const MAX_ITEMS = 5;
+            let selectedItems = [];
+
+            const updateWhatsAppLink = () => {
+                const base = "https://wa.me/917705982880?text=";
+                let message;
+                if (selectedItems.length > 0) {
+                    message = `Hi! I'd like to order a Diwali hamper with the following ${selectedItems.length} item(s):\n\n- ${selectedItems.join('\n- ')}\n\nPlease let me know the total. My desired pickup date and time is: [Please specify]`;
+                } else {
+                    message = "Hi! I'd like to place an order for a Diwali hamper.";
+                }
+                const encodedMessage = encodeURIComponent(message);
+                const finalUrl = base + encodedMessage;
+                navWhatsAppBtn.href = finalUrl;
+                footerWhatsAppBtn.href = finalUrl;
+            };
+            
+            const updateSelectionFeedback = () => {
+                const count = selectedItems.length;
+                selectionFeedback.classList.remove('text-red-500');
+                
+                if (count === 0) {
+                    selectionFeedback.textContent = `Select up to ${MAX_ITEMS} items.`;
+                } else if (count < MAX_ITEMS) {
+                    selectionFeedback.textContent = `${count} / ${MAX_ITEMS} items selected.`;
+                } else if (count === MAX_ITEMS) {
+                    selectionFeedback.textContent = `Maximum items selected! (${MAX_ITEMS}/${MAX_ITEMS})`;
+                }
+            };
+
+            itemCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const itemName = e.target.value;
+                    if (e.target.checked) {
+                        if (selectedItems.length >= MAX_ITEMS) {
+                            e.target.checked = false; // Prevent checking
+                            selectionFeedback.textContent = `You can only select up to ${MAX_ITEMS} items.`;
+                            selectionFeedback.classList.add('text-red-500');
+                        } else {
+                            selectedItems.push(itemName);
+                        }
+                    } else {
+                        selectedItems = selectedItems.filter(item => item !== itemName);
+                    }
+                    updateWhatsAppLink();
+                    updateSelectionFeedback();
+                });
+            });
+
+            // Initial setup
+            updateWhatsAppLink();
+            updateSelectionFeedback();
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
