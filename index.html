@@ -76,7 +76,7 @@
         <section id="treats" class="py-20 md:py-28">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-4">MYOH: Make Your Own Hamper</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Select any items for your custom hamper. Each item weighs approximately 150-180g, ensuring a generous portion of our freshly baked goodies.</p>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Select as many items as you like for your custom hamper. Each item weighs approximately 150-180g, ensuring a generous portion of our freshly baked goodies.</p>
 
                 <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
                     <img src="IMG_4052.jpeg" alt="Diwali Hamper" class="w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
@@ -307,7 +307,7 @@
                 const selectedItems = getSelectedItems();
                 selectionFeedback.classList.remove('text-red-500');
                 if (selectedItems.length === 0) {
-                    selectionFeedback.textContent = `Select any items.`;
+                    selectionFeedback.textContent = `Select as many items as you like.`;
                 } else {
                     selectionFeedback.textContent = `${selectedItems.length} item(s) selected. Each approx 150-180g.`;
                 }
