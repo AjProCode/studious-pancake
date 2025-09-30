@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order exquisite, handcrafted Diwali hampers from Bake Me a Wish. Fully customizable with a range of sweet and savory treats. Pre-book now!">
     <title>Bake Me a Wish - Exquisite Diwali Hampers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +46,21 @@
             min-width: 100%;
             box-sizing: border-box;
         }
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        /* Back to top button */
+        #back-to-top {
+            transition: opacity 0.3s, transform 0.3s;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -52,18 +68,36 @@
     <!-- Header & Navigation -->
     <nav class="bg-[#F3ECE7]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-4 text-3xl font-bold text-[#1E434B]" style="font-family: 'Playfair Display', serif;">
+            <a href="#" class="flex items-center gap-4 text-2xl md:text-3xl font-bold text-[#1E434B]" style="font-family: 'Playfair Display', serif;">
                 <!-- The logo image should now appear correctly -->
-                <img src="Bake Me A wish Handmade with love.png" alt="Bake Me a Wish Logo" class="h-20 w-20 rounded-full object-cover">
+                <img src="Bake Me A wish Handmade with love.png" alt="Bake Me a Wish Logo" class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover">
                 Bake Me a Wish
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#treats" class="text-[#1E434B] hover:text-opacity-80 transition">Our Treats</a>
+                <a href="#gallery" class="text-[#1E434B] hover:text-opacity-80 transition">Gallery</a>
+                <a href="#about" class="text-[#1E434B] hover:text-opacity-80 transition">About Us</a>
                 <a href="#order" class="text-[#1E434B] hover:text-opacity-80 transition">How to Order</a>
             </div>
-            <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
+            <a id="nav-whatsapp-btn" href="#" target="_blank" class="hidden md:block bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
                 Order on WhatsApp
             </a>
+            <!-- Hamburger Button -->
+            <button id="hamburger-btn" class="md:hidden text-[#1E434B] focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-[#F3ECE7] absolute top-full left-0 w-full -translate-x-full shadow-lg">
+            <div class="flex flex-col items-center space-y-4 p-6">
+                <a href="#treats" class="mobile-link text-[#1E434B] text-lg">Our Treats</a>
+                <a href="#gallery" class="mobile-link text-[#1E434B] text-lg">Gallery</a>
+                <a href="#about" class="mobile-link text-[#1E434B] text-lg">About Us</a>
+                <a href="#order" class="mobile-link text-[#1E434B] text-lg">How to Order</a>
+                <a id="mobile-whatsapp-btn" href="#" target="_blank" class="mt-4 bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full btn-shadow">
+                    Order on WhatsApp
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -119,37 +153,72 @@
             </div>
         </section>
 
-        <!-- How to Order Section -->
-        <section id="order" class="bg-[#1E434B] text-white py-20 md:py-28">
+        <!-- About Us Section -->
+        <section id="about" class="py-20 md:py-28">
+            <div class="container mx-auto px-6 text-center max-w-4xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-8">Handmade with Love</h2>
+                <img src="Bake Me A wish Handmade with love.png" alt="Bake Me a Wish Founder" class="w-48 h-48 rounded-full object-cover mx-auto mb-6 shadow-lg">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Welcome to Bake Me a Wish, born from a passion for baking and a love for festive traditions. Our journey began in a home kitchen, with a simple mission: to create unforgettable treats that bring people together. Each item is handcrafted with the finest ingredients, a dash of innovation, and a whole lot of love. We believe in the magic of a shared dessert and the joy of a perfect gift.
+                </p>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="bg-[#1E434B] text-white py-20 md:py-28">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-12">Simple Steps to Festive Gifting</h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">What Our Customers Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white/10 p-8 rounded-xl text-left">
+                        <p class="text-gray-300 mb-4">"The Motichoor Rose Cake was out of this world! Such a unique and delicious fusion. The hamper was beautifully packaged and a huge hit with my family."</p>
+                        <p class="font-bold text-[#F3ECE7]">- Priya S.</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white/10 p-8 rounded-xl text-left">
+                        <p class="text-gray-300 mb-4">"Absolutely loved the Sriracha Cashews and the Brownie Brittle. It's so hard to find good quality savory snacks in a hamper. 10/10 would recommend!"</p>
+                        <p class="font-bold text-[#F3ECE7]">- Rohan M.</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white/10 p-8 rounded-xl text-left">
+                        <p class="text-gray-300 mb-4">"I ordered 10 hampers for corporate gifting and the process was seamless. The team was so helpful with customization. Our clients were thrilled!"</p>
+                        <p class="font-bold text-[#F3ECE7]">- Anjali K.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Order Section -->
+        <section id="order" class="bg-[#F3ECE7] py-20 md:py-28">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-12">Simple Steps to Festive Gifting</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto mb-12">
                     <!-- Step 1 -->
-                    <div class="bg-white/10 p-8 rounded-xl">
-                        <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">01</div>
-                        <h3 class="text-2xl font-bold mb-3">Curate Your Hamper</h3>
-                        <p class="text-gray-300">Browse our menu and choose up to 5 items for your perfect hamper.</p>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="text-3xl font-bold mb-4 text-[#1E434B]">01</div>
+                        <h3 class="text-2xl font-bold text-[#1E434B] mb-3">Curate Your Hamper</h3>
+                        <p class="text-gray-600">Browse our menu and choose your favorite items for the perfect hamper.</p>
                     </div>
                     <!-- Step 2 -->
-                    <div class="bg-white/10 p-8 rounded-xl">
-                        <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">02</div>
-                        <h3 class="text-2xl font-bold mb-3">For your Information</h3>
-                        <p class="text-gray-300">Allow us 2 days for preparation. Festive packaging is available for ₹150-200 extra to make your gift special.</p>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="text-3xl font-bold mb-4 text-[#1E434B]">02</div>
+                        <h3 class="text-2xl font-bold text-[#1E434B] mb-3">For your Information</h3>
+                        <p class="text-gray-600">Allow us 2 days for preparation. Festive packaging is available for ₹150-200 extra.</p>
                     </div>
                     <!-- Step 3 -->
-                    <div class="bg-white/10 p-8 rounded-xl">
-                         <div class="text-3xl font-bold mb-4 text-[#F3ECE7]">03</div>
-                        <h3 class="text-2xl font-bold mb-3">Place Your Order</h3>
-                        <p class="text-gray-300">Click to order via WhatsApp. Your items will be in the message. Just add your desired pickup date and time!</p>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                         <div class="text-3xl font-bold mb-4 text-[#1E434B]">03</div>
+                        <h3 class="text-2xl font-bold text-[#1E434B] mb-3">Place Your Order</h3>
+                        <p class="text-gray-600">Click to order via WhatsApp. Your items will be in the message. Just add your desired pickup date!</p>
                     </div>
                 </div>
                 
-                <div class="border-2 border-[#F3ECE7] p-6 rounded-lg max-w-3xl mx-auto mb-12">
-                    <h3 class="font-bold text-xl mb-2">Please Note</h3>
-                    <p class="text-lg">Please remember to place your orders before the <strong class="text-yellow-300">15th of October</strong> as we won't be accepting any after this date. Thank you!</p>
+                <div class="border-2 border-[#1E434B] p-6 rounded-lg max-w-3xl mx-auto mb-12">
+                    <h3 class="font-bold text-xl text-[#1E434B] mb-2">Please Note</h3>
+                    <p class="text-lg text-gray-700">Please remember to place your orders before the <strong class="text-red-600">15th of October</strong> as we won't be accepting any after this date. Thank you!</p>
                 </div>
 
-                <a id="footer-whatsapp-btn" href="https://wa.me/917705982880?text=Hi! I'd like to place an order for a Diwali hamper." target="_blank" class="bg-[#F3ECE7] text-[#1E434B] font-bold text-xl py-4 px-12 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
+                <a id="footer-whatsapp-btn" href="https://wa.me/917705982880?text=Hi! I'd like to place an order for a Diwali hamper." target="_blank" class="bg-[#1E434B] text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
                     Order Now on WhatsApp
                 </a>
             </div>
@@ -171,49 +240,78 @@
         </div>
     </footer>
 
+    <!-- Item Detail Modal -->
+    <div id="item-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative transform scale-95 opacity-0">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img id="modal-img" src="" alt="Item image" class="w-full h-64 object-cover rounded-md mb-4">
+            <h3 id="modal-title" class="text-2xl font-bold text-[#1E434B] mb-2"></h3>
+            <p id="modal-desc" class="text-gray-600 mb-4"></p>
+            <div class="flex justify-between items-center">
+                <span id="modal-price" class="text-xl font-bold text-[#1E434B]"></span>
+                <span class="text-sm text-gray-500">150-180g approx</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="fixed bottom-8 right-8 bg-[#1E434B] text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transform translate-y-4 hover:bg-opacity-90">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </a>
+
     <script>
         // Replace the previous DOMContentLoaded script with the dynamic menu renderer and selection logic
         document.addEventListener('DOMContentLoaded', () => {
-            // Remove selection limit
+            // --- Data ---
             const menuData = [
                 {
                     category: "Sweet Treats",
                     items: [
-                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250 },
-                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200 },
-                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150 },
-                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150 },
-                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200 },
-                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200 },
-                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240 },
-                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200 },
-                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150 },
-                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150 },
-                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150 },
-                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250 }
+                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/11.jpeg', description: "A decadent fusion cake combining the traditional taste of motichoor ladoo with delicate rose flavors. A true showstopper." },
+                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Creamy lemon cheesecake filling enrobed in a white chocolate shell. A zesty and refreshing bite." },
+                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'photos/placeholder.jpeg', description: "Soft, chewy red velvet cookies with a beautiful crinkled top, dusted with powdered sugar." },
+                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'photos/placeholder.jpeg', description: "Bright and zesty citrus-infused cookies with a delightful crinkle effect. A burst of sunshine." },
+                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/2.jpeg', description: "All the best parts of a brownie in a thin, crispy, and incredibly addictive form. Perfect for snacking." },
+                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Rich and creamy fudge made with an indulgent amount of Nutella. A hazelnut-chocolate lover's dream." },
+                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'photos/placeholder.jpeg', description: "A modern take on the classic badam katli, loaded with nuts and premium ingredients for a richer taste." },
+                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Healthy yet delicious bites made from roasted gram flour (sattu) and sweet apricots. A nutritious treat." },
+                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'photos/placeholder.jpeg', description: "A unique fudge combining the earthy flavor of ragi (finger millet) with a satisfying crunch." },
+                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'photos/placeholder.jpeg', description: "Classic buttery and crumbly biscuits from Hyderabad, studded with tutti-frutti and nuts." },
+                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'photos/placeholder.jpeg', description: "A refreshing and aromatic mouth freshener mix inspired by the famous Calcutta paan." },
+                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'photos/placeholder.jpeg', description: "Crunchy roasted hazelnuts coated in a sweet espresso glaze. The perfect pick-me-up." }
                     ]
                 },
                 {
                     category: "Savory Treats",
                     items: [
-                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200 },
-                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150 },
-                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250 },
-                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175 },
-                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120 }
+                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'photos/placeholder.jpeg', description: "Roasted fox nuts (makhana) tossed in the iconic 'everything bagel' seasoning. A light and savory snack." },
+                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'photos/placeholder.jpeg', description: "A spicy and tangy mix of puffed millets and seeds, perfect for guilt-free munching." },
+                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'photos/placeholder.jpeg', description: "Premium cashews roasted and coated in a fiery sriracha glaze for a sweet and spicy kick." },
+                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'photos/placeholder.jpeg', description: "Crispy, savory breadsticks flavored with nutty black sesame and sharp parmesan cheese." },
+                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'photos/placeholder.jpeg', description: "Healthy, crunchy crackers made from a blend of millets. Perfect with dips or on their own." }
                     ]
                 }
             ];
 
+            // --- Element Selectors ---
             const menuContainer = document.getElementById('menu-items');
             const selectionFeedback = document.getElementById('selection-feedback');
             const navWhatsAppBtn = document.getElementById('nav-whatsapp-btn');
             const footerWhatsAppBtn = document.getElementById('footer-whatsapp-btn');
+            const mobileWhatsAppBtn = document.getElementById('mobile-whatsapp-btn');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const backToTopBtn = document.getElementById('back-to-top');
+            const itemModal = document.getElementById('item-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
 
-            // Render menu
+            // --- Menu & Order Logic ---
             menuContainer.innerHTML = '';
             menuData.forEach((section) => {
-                // category header
                 const headerWrapper = document.createElement('div');
                 headerWrapper.className = 'md:col-span-2 text-center my-6';
                 headerWrapper.innerHTML = `<h3 class="text-2xl font-bold text-[#1E434B] inline-block border-b-2 border-[#1E434B] pb-2">${section.category}</h3>`;
@@ -221,12 +319,11 @@
 
                 section.items.forEach((item) => {
                     const label = document.createElement('label');
-                    label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md';
+                    label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
                     label.innerHTML = `
                         <div class="flex items-center">
                             <input type="checkbox" id="${item.id}" data-price="${item.price}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}">
-                            <span class="font-semibold">${item.name}</span>
-                            <span class="ml-4 text-sm text-gray-500">150-180g approx</span>
+                            <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
                         </div>
                         <span class="font-bold text-[#1E434B]">₹${item.price}</span>
                     `;
@@ -234,19 +331,16 @@
                 });
             });
 
-            // After rendering, attach logic
             const itemCheckboxes = Array.from(document.querySelectorAll('.item-checkbox'));
-
-            function getSelectedItemsRaw() {
-                return itemCheckboxes.filter(cb => cb.checked);
-            }
 
             function getSelectedItemsData() {
                 const selected = [];
                 let total = 0;
-                getSelectedItemsRaw().forEach(cb => {
-                    selected.push(cb.value);
-                    total += Number(cb.dataset.price || 0);
+                itemCheckboxes.forEach(cb => {
+                    if (cb.checked) {
+                        selected.push(cb.value);
+                        total += Number(cb.dataset.price || 0);
+                    }
                 });
                 return { selected, total };
             }
@@ -256,23 +350,20 @@
                 const { selected, total } = getSelectedItemsData();
                 let message;
                 if (selected.length > 0) {
-                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). Each item is approx 150-180g. My desired pickup date and time is: [Please specify]`;
+                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). My desired pickup date and time is: [Please specify]`;
                 } else {
                     message = "Hi! I'd like to place an order for a Diwali hamper.";
                 }
-                const encodedMessage = encodeURIComponent(message);
-                const finalUrl = base + encodedMessage;
+                const finalUrl = base + encodeURIComponent(message);
                 navWhatsAppBtn.href = finalUrl;
                 footerWhatsAppBtn.href = finalUrl;
+                mobileWhatsAppBtn.href = finalUrl;
             };
-
-            let warningTimeout = null;
 
             const updateSelectionFeedback = () => {
                 const { selected, total } = getSelectedItemsData();
-                selectionFeedback.classList.remove('text-red-500');
                 if (selected.length === 0) {
-                    selectionFeedback.textContent = `Select as many items as you like.`;
+                    selectionFeedback.textContent = `Select items or click names for details.`;
                 } else {
                     selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
                 }
@@ -285,9 +376,42 @@
                 });
             });
 
-            // Initial setup
-            updateWhatsAppLink();
-            updateSelectionFeedback();
+            // --- Modal Logic ---
+            menuContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('item-name')) {
+                    const itemId = e.target.dataset.itemId;
+                    const allItems = menuData.flatMap(cat => cat.items);
+                    const item = allItems.find(i => i.id === itemId);
+                    if (item) {
+                        document.getElementById('modal-img').src = item.image;
+                        document.getElementById('modal-img').alt = item.name;
+                        document.getElementById('modal-title').textContent = item.name;
+                        document.getElementById('modal-desc').textContent = item.description;
+                        document.getElementById('modal-price').textContent = `₹${item.price}`;
+                        itemModal.classList.remove('opacity-0', 'pointer-events-none');
+                        modalContent.classList.remove('scale-95', 'opacity-0');
+                    }
+                }
+            });
+
+            const closeModal = () => {
+                modalContent.classList.add('scale-95', 'opacity-0');
+                itemModal.classList.add('opacity-0', 'pointer-events-none');
+            };
+            modalCloseBtn.addEventListener('click', closeModal);
+            itemModal.addEventListener('click', (e) => {
+                if (e.target === itemModal) closeModal();
+            });
+
+            // --- Hamburger Menu Logic ---
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('-translate-x-full');
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                });
+            });
 
             // --- Carousel Logic ---
             const galleryImages = [
@@ -296,22 +420,19 @@
                 { src: 'Photos/1.jpeg', caption: 'A closer look at the delicate layers of our Motichoor Rose Cake.' },
                 { src: 'Photos/2.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' }
             ];
-
             const slidesContainer = document.querySelector('#image-carousel .carousel-slides');
             const captionElement = document.getElementById('carousel-caption');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
+            let autoPlayInterval;
 
             function renderCarousel() {
-                slidesContainer.innerHTML = '';
-                galleryImages.forEach(img => {
-                    slidesContainer.innerHTML += `
-                        <div class="carousel-slide">
-                            <img src="${img.src}" alt="${img.caption}" class="w-full h-full object-cover">
-                        </div>
-                    `;
-                });
+                slidesContainer.innerHTML = galleryImages.map(img => `
+                    <div class="carousel-slide">
+                        <img src="${img.src}" alt="${img.caption}" class="w-full h-96 object-cover">
+                    </div>
+                `).join('');
                 updateCarousel();
             }
 
@@ -320,17 +441,44 @@
                 captionElement.textContent = galleryImages[currentIndex].caption;
             }
 
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % galleryImages.length;
+                    updateCarousel();
+                }, 5000);
+            }
+
+            function resetAutoPlay() {
+                clearInterval(autoPlayInterval);
+                startAutoPlay();
+            }
+
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % galleryImages.length;
                 updateCarousel();
+                resetAutoPlay();
             });
 
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
                 updateCarousel();
+                resetAutoPlay();
             });
 
-            renderCarousel(); // Initialize carousel
+            // --- Back to Top Button Logic ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                }
+            });
+
+            // --- Initializations ---
+            updateWhatsAppLink();
+            updateSelectionFeedback();
+            renderCarousel();
+            startAutoPlay();
         });
     </script>
 
