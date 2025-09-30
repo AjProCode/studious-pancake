@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Order exquisite, handcrafted Diwali hampers from Bake Me a Wish. Fully customizable with a range of sweet and savory treats. Pre-book now!">
+    <link rel="icon" href="Bake Me A wish Handmade with love.png" type="image/png">
     <title>Bake Me a Wish - Exquisite Diwali Hampers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,9 +62,30 @@
         #back-to-top {
             transition: opacity 0.3s, transform 0.3s;
         }
+        /* Preloader */
+        #preloader {
+            transition: opacity 0.5s ease-out;
+        }
+        /* Scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="text-gray-800">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-[#F3ECE7] z-[100] flex items-center justify-center">
+        <div class="animate-pulse">
+            <img src="Bake Me A wish Handmade with love.png" alt="Loading..." class="h-32 w-32 rounded-full object-cover">
+        </div>
+    </div>
 
     <!-- Header & Navigation -->
     <nav class="bg-[#F3ECE7]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
@@ -78,6 +100,7 @@
                 <a href="#gallery" class="text-[#1E434B] hover:text-opacity-80 transition">Gallery</a>
                 <a href="#about" class="text-[#1E434B] hover:text-opacity-80 transition">About Us</a>
                 <a href="#order" class="text-[#1E434B] hover:text-opacity-80 transition">How to Order</a>
+                <a href="#contact" class="text-[#1E434B] hover:text-opacity-80 transition">Contact Us</a>
             </div>
             <a id="nav-whatsapp-btn" href="#" target="_blank" class="hidden md:block bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 btn-shadow">
                 Order on WhatsApp
@@ -94,6 +117,7 @@
                 <a href="#gallery" class="mobile-link text-[#1E434B] text-lg">Gallery</a>
                 <a href="#about" class="mobile-link text-[#1E434B] text-lg">About Us</a>
                 <a href="#order" class="mobile-link text-[#1E434B] text-lg">How to Order</a>
+                <a href="#contact" class="mobile-link text-[#1E434B] text-lg">Contact Us</a>
                 <a id="mobile-whatsapp-btn" href="#" target="_blank" class="mt-4 bg-[#1E434B] text-white font-bold py-2 px-6 rounded-full btn-shadow">
                     Order on WhatsApp
                 </a>
@@ -165,7 +189,7 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="bg-[#1E434B] text-white py-20 md:py-28">
+        <section id="testimonials" class="bg-[#1E434B] text-white py-20 md:py-28 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl md:text-5xl font-bold mb-12">What Our Customers Say</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
@@ -189,25 +213,25 @@
         </section>
 
         <!-- How to Order Section -->
-        <section id="order" class="bg-[#F3ECE7] py-20 md:py-28">
+        <section id="order" class="bg-[#F3ECE7] py-20 md:py-28 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-12">Simple Steps to Festive Gifting</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto mb-12">
                     <!-- Step 1 -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-3xl font-bold mb-4 text-[#1E434B]">01</div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#1E434B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         <h3 class="text-2xl font-bold text-[#1E434B] mb-3">Curate Your Hamper</h3>
                         <p class="text-gray-600">Browse our menu and choose your favorite items for the perfect hamper.</p>
                     </div>
                     <!-- Step 2 -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-3xl font-bold mb-4 text-[#1E434B]">02</div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#1E434B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <h3 class="text-2xl font-bold text-[#1E434B] mb-3">For your Information</h3>
                         <p class="text-gray-600">Allow us 2 days for preparation. Festive packaging is available for ₹150-200 extra.</p>
                     </div>
                     <!-- Step 3 -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                         <div class="text-3xl font-bold mb-4 text-[#1E434B]">03</div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-[#1E434B]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
                         <h3 class="text-2xl font-bold text-[#1E434B] mb-3">Place Your Order</h3>
                         <p class="text-gray-600">Click to order via WhatsApp. Your items will be in the message. Just add your desired pickup date!</p>
                     </div>
@@ -227,14 +251,14 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#1E434B] text-[#F3ECE7]/80 py-10">
+    <footer id="contact" class="bg-[#1E434B] text-[#F3ECE7]/80 py-10">
         <div class="container mx-auto px-6 text-center">
             <img src="Bake Me A wish Handmade with love.png" alt="Bake Me a Wish Logo" class="w-60 h-60 rounded-full object-cover mx-auto mb-4">
             <h3 class="text-2xl mb-2" style="font-family: 'Playfair Display', serif;">Bake Me a Wish</h3>
             <p>3/131 Vikrant Khand 3</p>
             <p>Near IMS Hospital</p>
             <p>Gomti Nagar, Lucknow 226010</p>
-            <p>Contact Number: +91 7705982880</p>
+            <p>Contact Number: <a href="tel:+917705982880" class="hover:underline">+91 7705982880</a></p>
             <p class="mb-4">Handmade with love and care.</p>
             <p>&copy; 2025 Bake Me a Wish. All Rights Reserved.</p>
         </div>
@@ -270,27 +294,27 @@
                     category: "Sweet Treats",
                     items: [
                         { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/11.jpeg', description: "A decadent fusion cake combining the traditional taste of motichoor ladoo with delicate rose flavors. A true showstopper." },
-                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Creamy lemon cheesecake filling enrobed in a white chocolate shell. A zesty and refreshing bite." },
-                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'photos/placeholder.jpeg', description: "Soft, chewy red velvet cookies with a beautiful crinkled top, dusted with powdered sugar." },
-                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'photos/placeholder.jpeg', description: "Bright and zesty citrus-infused cookies with a delightful crinkle effect. A burst of sunshine." },
+                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Creamy lemon cheesecake filling enrobed in a white chocolate shell. A zesty and refreshing bite." },
+                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/3.jpeg', description: "Soft, chewy red velvet cookies with a beautiful crinkled top, dusted with powdered sugar." },
+                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/3.jpeg', description: "Bright and zesty citrus-infused cookies with a delightful crinkle effect. A burst of sunshine." },
                         { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/2.jpeg', description: "All the best parts of a brownie in a thin, crispy, and incredibly addictive form. Perfect for snacking." },
-                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Rich and creamy fudge made with an indulgent amount of Nutella. A hazelnut-chocolate lover's dream." },
-                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'photos/placeholder.jpeg', description: "A modern take on the classic badam katli, loaded with nuts and premium ingredients for a richer taste." },
-                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'photos/placeholder.jpeg', description: "Healthy yet delicious bites made from roasted gram flour (sattu) and sweet apricots. A nutritious treat." },
-                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'photos/placeholder.jpeg', description: "A unique fudge combining the earthy flavor of ragi (finger millet) with a satisfying crunch." },
-                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'photos/placeholder.jpeg', description: "Classic buttery and crumbly biscuits from Hyderabad, studded with tutti-frutti and nuts." },
-                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'photos/placeholder.jpeg', description: "A refreshing and aromatic mouth freshener mix inspired by the famous Calcutta paan." },
-                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'photos/placeholder.jpeg', description: "Crunchy roasted hazelnuts coated in a sweet espresso glaze. The perfect pick-me-up." }
+                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Rich and creamy fudge made with an indulgent amount of Nutella. A hazelnut-chocolate lover's dream." },
+                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/3.jpeg', description: "A modern take on the classic badam katli, loaded with nuts and premium ingredients for a richer taste." },
+                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Healthy yet delicious bites made from roasted gram flour (sattu) and sweet apricots. A nutritious treat." },
+                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/3.jpeg', description: "A unique fudge combining the earthy flavor of ragi (finger millet) with a satisfying crunch." },
+                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/3.jpeg', description: "Classic buttery and crumbly biscuits from Hyderabad, studded with tutti-frutti and nuts." },
+                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/3.jpeg', description: "A refreshing and aromatic mouth freshener mix inspired by the famous Calcutta paan." },
+                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/3.jpeg', description: "Crunchy roasted hazelnuts coated in a sweet espresso glaze. The perfect pick-me-up." }
                     ]
                 },
                 {
                     category: "Savory Treats",
                     items: [
-                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'photos/placeholder.jpeg', description: "Roasted fox nuts (makhana) tossed in the iconic 'everything bagel' seasoning. A light and savory snack." },
-                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'photos/placeholder.jpeg', description: "A spicy and tangy mix of puffed millets and seeds, perfect for guilt-free munching." },
-                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'photos/placeholder.jpeg', description: "Premium cashews roasted and coated in a fiery sriracha glaze for a sweet and spicy kick." },
-                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'photos/placeholder.jpeg', description: "Crispy, savory breadsticks flavored with nutty black sesame and sharp parmesan cheese." },
-                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'photos/placeholder.jpeg', description: "Healthy, crunchy crackers made from a blend of millets. Perfect with dips or on their own." }
+                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/3.jpeg', description: "Roasted fox nuts (makhana) tossed in the iconic 'everything bagel' seasoning. A light and savory snack." },
+                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/3.jpeg', description: "A spicy and tangy mix of puffed millets and seeds, perfect for guilt-free munching." },
+                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/3.jpeg', description: "Premium cashews roasted and coated in a fiery sriracha glaze for a sweet and spicy kick." },
+                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/3.jpeg', description: "Crispy, savory breadsticks flavored with nutty black sesame and sharp parmesan cheese." },
+                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/3.jpeg', description: "Healthy, crunchy crackers made from a blend of millets. Perfect with dips or on their own." }
                     ]
                 }
             ];
@@ -308,6 +332,12 @@
             const itemModal = document.getElementById('item-modal');
             const modalContent = document.getElementById('modal-content');
             const modalCloseBtn = document.getElementById('modal-close-btn');
+            const preloader = document.getElementById('preloader');
+
+            // --- Preloader ---
+            window.addEventListener('load', () => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+            });
 
             // --- Menu & Order Logic ---
             menuContainer.innerHTML = '';
@@ -408,7 +438,13 @@
                 mobileMenu.classList.toggle('-translate-x-full');
             });
             mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (e) => {
+                    // Smooth scroll for mobile links
+                    const targetId = link.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                    }
                     mobileMenu.classList.add('-translate-x-full');
                 });
             });
@@ -472,6 +508,20 @@
                 } else {
                     backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
                 }
+            });
+
+            // --- Scroll Animation Logic ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
             });
 
             // --- Initializations ---
