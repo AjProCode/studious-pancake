@@ -33,6 +33,18 @@
             background-color: #1E434B;
             border-color: #1E434B;
         }
+        /* Carousel custom styles */
+        .carousel-container {
+            position: relative;
+        }
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -85,6 +97,25 @@
                     </div>
                     <div id="selection-feedback" class="mt-6 text-center font-semibold h-6"></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section id="gallery" class="py-20 md:py-28 bg-[#F3ECE7]">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-12">A Glimpse of Our Creations</h2>
+                <div id="image-carousel" class="carousel-container max-w-3xl mx-auto overflow-hidden rounded-lg shadow-xl relative">
+                    <div class="carousel-slides">
+                        <!-- Slides will be injected by JS -->
+                    </div>
+                    <button id="prevBtn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/50 hover:bg-white/80 text-[#1E434B] p-2 rounded-full focus:outline-none transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button id="nextBtn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/50 hover:bg-white/80 text-[#1E434B] p-2 rounded-full focus:outline-none transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+                <p id="carousel-caption" class="mt-6 text-lg text-yellow-600" style="color: #b8860b;"></p>
             </div>
         </section>
 
@@ -257,6 +288,49 @@
             // Initial setup
             updateWhatsAppLink();
             updateSelectionFeedback();
+
+            // --- Carousel Logic ---
+            const galleryImages = [
+                { src: 'photos/hamper.jpeg', caption: 'Our beautifully curated Diwali hamper, ready for gifting.' },
+                { src: 'photos/motichoor-rose-cake-1.jpeg', caption: 'The exquisite Motichoor Rose Cake, a true fusion delight.' },
+                { src: 'photos/motichoor-rose-cake-2.jpeg', caption: 'A closer look at the delicate layers of our Motichoor Rose Cake.' },
+                { src: 'photos/brownie-brittle.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' }
+            ];
+
+            const slidesContainer = document.querySelector('#image-carousel .carousel-slides');
+            const captionElement = document.getElementById('carousel-caption');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+
+            function renderCarousel() {
+                slidesContainer.innerHTML = '';
+                galleryImages.forEach(img => {
+                    slidesContainer.innerHTML += `
+                        <div class="carousel-slide">
+                            <img src="${img.src}" alt="${img.caption}" class="w-full h-full object-cover">
+                        </div>
+                    `;
+                });
+                updateCarousel();
+            }
+
+            function updateCarousel() {
+                slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                captionElement.textContent = galleryImages[currentIndex].caption;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateCarousel();
+            });
+
+            renderCarousel(); // Initialize carousel
         });
     </script>
 
