@@ -315,14 +315,14 @@
                 {
                     category: "Sweet Treats",
                     items: [
-                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/11.jpeg', description: "A decadent fusion cake combining the traditional taste of motichoor ladoo with delicate rose flavors. A true showstopper." },
-                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Creamy lemon cheesecake filling enrobed in a white chocolate shell. A zesty and refreshing bite." },
-                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/3.jpeg', description: "Soft, chewy red velvet cookies with a beautiful crinkled top, dusted with powdered sugar." },
-                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/3.jpeg', description: "Bright and zesty citrus-infused cookies with a delightful crinkle effect. A burst of sunshine." },
-                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/2.jpeg', description: "All the best parts of a brownie in a thin, crispy, and incredibly addictive form. Perfect for snacking." },
-                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Rich and creamy fudge made with an indulgent amount of Nutella. A hazelnut-chocolate lover's dream." },
-                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/3.jpeg', description: "A modern take on the classic badam katli, loaded with nuts and premium ingredients for a richer taste." },
-                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/3.jpeg', description: "Healthy yet delicious bites made from roasted gram flour (sattu) and sweet apricots. A nutritious treat." },
+                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/MCRC.jpeg', description: "A decadent fusion cake combining the traditional taste of motichoor ladoo with delicate rose flavors. A true showstopper." },
+                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/MAIN.jpeg', description: "Creamy lemon cheesecake filling enrobed in a white chocolate shell. A zesty and refreshing bite." },
+                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Soft, chewy red velvet cookies with a beautiful crinkled top, dusted with powdered sugar." },
+                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Bright and zesty citrus-infused cookies with a delightful crinkle effect. A burst of sunshine." },
+                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB2', description: "All the best parts of a brownie in a thin, crispy, and incredibly addictive form. Perfect for snacking." },
+                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/NFB.jpeg', description: "Rich and creamy fudge made with an indulgent amount of Nutella. A hazelnut-chocolate lover's dream." },
+                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/BK.jpeg', description: "A modern take on the classic badam katli, loaded with nuts and premium ingredients for a richer taste." },
+                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/MAIN.jpeg', description: "Healthy yet delicious bites made from roasted gram flour (sattu) and sweet apricots. A nutritious treat." },
                         { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/3.jpeg', description: "A unique fudge combining the earthy flavor of ragi (finger millet) with a satisfying crunch." },
                         { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/3.jpeg', description: "Classic buttery and crumbly biscuits from Hyderabad, studded with tutti-frutti and nuts." },
                         { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/3.jpeg', description: "A refreshing and aromatic mouth freshener mix inspired by the famous Calcutta paan." },
@@ -479,9 +479,13 @@
 
             // --- Carousel Logic ---
             const galleryImages = [
-                { src: 'Photos/3.jpeg', caption: 'Our beautifully curated Diwali hamper, ready for gifting.' },
-                { src: 'Photos/11.jpeg', caption: 'The exquisite Motichoor Rose Cake, a true fusion delight.' },
-                { src: 'Photos/2.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' }
+                { src: 'Photos/MAIN.jpeg', caption: 'Our beautifully curated Diwali hamper, ready for gifting.' },
+                { src: 'Photos/MCRC.jpeg', caption: 'The exquisite Motichoor Rose Cake, a true fusion delight.' },
+                { src: 'Photos/BB1.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' },
+                { src: 'Photos/BB2.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' },
+                { src: 'Photos/BK.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' },
+                { src: 'Photos/BK2.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' },
+                { src: 'Photos/NFB.jpeg', caption: 'Crispy, chocolatey, and utterly addictive Brownie Brittle.' },
             ];
             const slidesContainer = document.querySelector('#image-carousel .carousel-slides');
             const captionElement = document.getElementById('carousel-caption');
