@@ -375,20 +375,22 @@
             // --- Menu Rendering ---
             function renderMenu() {
                 menuContainer.innerHTML = menuData.map(category => `
-                    <div class="mb-12">
-                        <h3 class="text-3xl font-bold text-[#1E434B] mb-6">${category.category}</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    <div class="mb-14">
+                        <h3 class="text-3xl font-bold text-[#1E434B] mb-6 border-b pb-2">${category.category}</h3>
+                        <div class="menu-grid-inner grid gap-8 md:gap-10" style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">
                             ${category.items.map(item => `
-                                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-start gap-4">
-                                    <img src="${item.image}" alt="${item.name}" class="w-full h-40 object-cover rounded-md">
-                                    <div class="flex-1">
-                                        <h4 class="text-xl font-semibold text-[#1E434B] item-name" data-item-id="${item.id}">${item.name}</h4>
-                                        <p class="text-gray-600 mb-4">${item.description}</p>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-lg font-bold text-[#1E434B]">₹${item.price}</span>
-                                            <label class="flex items-center gap-2">
-                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded" value="${item.name}" data-price="${item.price}">
-                                                <span class="text-gray-700">Select</span>
+                                <div class="group bg-[#F9F7F5] rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden flex flex-col border border-[#e8e2dd] item-card" data-item-id="${item.id}">
+                                    <div class="h-40 w-full overflow-hidden">
+                                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                                    </div>
+                                    <div class="flex-1 flex flex-col p-4">
+                                        <h4 class="text-base font-bold text-[#1E434B] leading-snug mb-1 item-name" data-item-id="${item.id}">${item.name}</h4>
+                                        <p class="text-xs text-gray-600 leading-snug mb-3 line-clamp-4">${item.description}</p>
+                                        <div class="mt-auto flex items-center justify-between pt-2">
+                                            <span class="text-[#1E434B] font-bold text-sm">₹${item.price}</span>
+                                            <label class="flex items-center gap-1.5 text-xs select-none font-medium">
+                                                <input type="checkbox" class="form-checkbox h-4 w-4 text-[#1E434B] rounded" value="${item.name}" data-price="${item.price}">
+                                                <span>Select</span>
                                             </label>
                                         </div>
                                     </div>
@@ -397,34 +399,55 @@
                         </div>
                     </div>
                 `).join('');
+
+                // Rebind checkbox listeners after render
+                bindSelectionHandlers();
             }
 
-            renderMenu();
-
-            // --- Selection Logic ---
-            const itemCheckboxes = document.querySelectorAll('.form-checkbox');
             function getSelectedItemsData() {
-    // ...existing code...
-    // This function only returns selected and total
-    // Feedback update is handled in updateSelectionFeedback()
-    return { selected, total };
-}
-
-function updateSelectionFeedback() {
-    const { selected, total } = getSelectedItemsData();
-    if (selected.length === 0) {
-        selectionFeedback.textContent = `Select items or click names for details.`;
-    } else {
-        selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
-    }
-}
-
-            itemCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener('change', () => {
-                    updateWhatsAppLink();
-                    updateSelectionFeedback();
+                const checkboxes = document.querySelectorAll('#menu-items .form-checkbox');
+                const selected = [];
+                let total = 0;
+                checkboxes.forEach(cb => {
+                    if (cb.checked) {
+                        selected.push(cb.value);
+                        total += parseInt(cb.getAttribute('data-price'), 10) || 0;
+                    }
                 });
-            });
+                return { selected, total };
+            }
+
+            function updateSelectionFeedback() {
+                const { selected, total } = getSelectedItemsData();
+                selectionFeedback.textContent = selected.length === 0
+                    ? 'Select items or click a card for details.'
+                    : `${selected.length} item(s) selected • Est. total ₹${total}`;
+            }
+
+            function updateWhatsAppLink() {
+                const { selected, total } = getSelectedItemsData();
+                const base = 'https://wa.me/917705982880?text=';
+                const msg = selected.length === 0
+                    ? 'Hi! I\'d like to place an order for a Diwali hamper.'
+                    : `Hi! I\'d like to order a hamper with: ${selected.join(', ')}. Estimated total ₹${total}.`;
+                const encoded = encodeURIComponent(msg);
+                [navWhatsAppBtn, footerWhatsAppBtn, mobileWhatsAppBtn].forEach(btn => { if (btn) btn.href = base + encoded; });
+            }
+
+            function bindSelectionHandlers() {
+                const checkboxes = document.querySelectorAll('#menu-items .form-checkbox');
+                checkboxes.forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        updateSelectionFeedback();
+                        updateWhatsAppLink();
+                    });
+                });
+                updateSelectionFeedback();
+                updateWhatsAppLink();
+            }
+
+            // Initial render
+            renderMenu();
 
             // --- Modal Logic ---
             menuContainer.addEventListener('click', (e) => {
