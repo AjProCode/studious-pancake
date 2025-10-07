@@ -20,18 +20,22 @@
             font-family: 'Playfair Display', serif;
         }
         .hero-bg {
+            /* The image 'Photos/MAIN.jpeg' should be in the Photos folder to appear. */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Photos/MAIN.jpeg');
         }
+        /* Custom button shadow for a bold look */
         .btn-shadow {
             box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);
         }
         .btn-shadow:hover {
             box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
         }
+        /* Style for custom checkbox */
         .form-checkbox:checked {
             background-color: #1E434B;
             border-color: #1E434B;
         }
+        /* Carousel custom styles */
         .carousel-container {
             position: relative;
         }
@@ -43,34 +47,17 @@
             min-width: 100%;
             box-sizing: border-box;
         }
+        /* Mobile Menu */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
+        /* Modal Styles */
         .modal-overlay {
             transition: opacity 0.3s ease;
         }
         .modal-content {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-
-        /* Desktop layout improvements */
-        @media (min-width: 1024px) {
-            .container { max-width: 1600px !important; }
-            .menu-wrapper { max-width: 100% !important; }
-            #menu-items {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 40px 32px !important;
-                width: 100% !important;
-            }
-            .carousel-container { max-width: 1000px !important; }
-            .hero-bg { min-height: 600px !important; height: 70vh !important; }
-            section, .py-20, .md\:py-28 { padding-top: 40px !important; padding-bottom: 40px !important; }
-        }
-        @media (min-width: 1536px) {
-            #menu-items { grid-template-columns: repeat(5, 1fr) !important; }
-        }
-        .hamper-hero-img { max-width: 420px; }
         /* Back to top button */
         #back-to-top {
             transition: opacity 0.3s, transform 0.3s;
@@ -175,8 +162,8 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-[#1E434B] mb-4">MYOH: Make Your Own Hamper</h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Select as many items as you like for your custom hamper. Each item weighs approximately 150g, ensuring a generous portion of our freshly baked goodies.</p>
 
-                <div class="menu-wrapper max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
-                    <img src="Photos/MAIN.jpeg" alt="Diwali Hamper" class="hamper-hero-img w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
+                <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
+                    <img src="Photos/MAIN.jpeg" alt="Diwali Hamper" class="w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
                     <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
                         <!-- menu will be rendered dynamically -->
                     </div>
@@ -324,6 +311,35 @@
         // Replace the previous DOMContentLoaded script with the dynamic menu renderer and selection logic
         document.addEventListener('DOMContentLoaded', () => {
             // --- Data ---
+            const menuData = [
+                {
+                    category: "Sweet Treats",
+                    items: [
+                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/MCRC.jpeg', description: "Think laddoo meets bouquet - The joy of motichoor meets the romance of roses in this festive show-stopper cake." },
+                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/1.jpg', description: "Tangy, creamy, dreamy — lemon cheesecake turned into poppable little truffles." },
+                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/2.jpg', description: "Bite-sized, crinkled, and ready to charm." },
+                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/3.jpg', description: "Golden citrus and sugar sparkle in every delicate crinkle bite." },
+                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB1.jpeg', description: "Thin, crisp, chocolatey — festive snacking at its best." },
+                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/NFB.jpeg', description: "A little bite, a lot of Nutella love." },
+                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/BK.jpeg', description: "Not your nani’s katli — this one’s loaded with extra almond bling." },
+                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/4.jpg', description: "Grandma’s sattu, apricot’s sass — all in one bar." },
+                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/5.jpg', description: "Gluten-free, fudgy, and crunchy - A festive bite of guilt-free joy." },
+                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/6.jpg', description: "The beloved Karachi biscuit — festive, fruity, and forever timeless." },
+                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/7.jpg', description: "An artisanal blend inspired by the iconic Calcutta paan — refreshing, and indulgent." },
+                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/8.jpg', description: "Espresso buzz meets hazelnut crunch." }
+                    ]
+                },
+                {
+                    category: "Savory Treats",
+                    items: [
+                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/9.jpg', description: "Your bagel seasoning, now on a crunch." },
+                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/10.jpg', description: "Bright, spicy, and addictive enough to share (or not)." },
+                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/11.jpg', description: "Nuts just got hotter." },
+                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/12.jpg', description: "Sesame crunch, Parmesan punch." },
+                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/13.jpg', description: "Celebrating health and flavour — millets baked into crisp golden crackers." }
+                    ]
+                }
+            ];
 
             // --- Element Selectors ---
             const menuContainer = document.getElementById('menu-items');
@@ -347,107 +363,71 @@
             });
 
             // --- Menu & Order Logic ---
-            // Sweet Treats
-            const sweetTreats = [
-                { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/MAIN.jpeg', description: "Tangy, creamy, dreamy — lemon cheesecake turned into poppable little truffles." },
-                { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Bite-sized, crinkled, and ready to charm." },
-                { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Golden citrus and sugar sparkle in every delicate crinkle bite." },
-                { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/MAIN.jpeg', description: "Grandma’s sattu, apricot’s sass — all in one bar." },
-                { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/MAIN.jpeg', description: "Gluten-free, fudgy, and crunchy - A festive bite of guilt-free joy." },
-                { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/MAIN.jpeg', description: "The beloved Karachi biscuit — festive, fruity, and forever timeless." },
-                { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/MAIN.jpeg', description: "An artisanal blend inspired by the iconic Calcutta paan — refreshing, and indulgent." },
-                { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/MAIN.jpeg', description: "Espresso buzz meets hazelnut crunch." }
-            ];
-            // Savory Treats
-            const savoryTreats = [
-                // ...existing code...
-                { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/MAIN.jpeg', description: "Bright, spicy, and addictive enough to share (or not)." },
-                { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/MAIN.jpeg', description: "Nuts just got hotter." },
-                { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/MAIN.jpeg', description: "Sesame crunch, Parmesan punch." },
-                { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/MAIN.jpeg', description: "Celebrating health and flavour — millets baked into crisp golden crackers." }
-            ];
-            // Combine for menuData
-            const menuData = [
-                { category: "Sweet Treats", items: sweetTreats },
-                { category: "Savory Treats", items: savoryTreats }
-            ];
+            menuContainer.innerHTML = '';
+            menuData.forEach((section) => {
+                const headerWrapper = document.createElement('div');
+                headerWrapper.className = 'md:col-span-2 text-center my-6';
+                headerWrapper.innerHTML = `<h3 class="text-2xl font-bold text-[#1E434B] inline-block border-b-2 border-[#1E434B] pb-2">${section.category}</h3>`;
+                menuContainer.appendChild(headerWrapper);
 
-            // --- Menu Rendering ---
-            function renderMenu() {
-                menuContainer.innerHTML = menuData.map(category => `
-                    <div class="mb-14">
-                        <h3 class="text-3xl font-bold text-[#1E434B] mb-6 border-b pb-2">${category.category}</h3>
-                        <div class="menu-grid-inner grid gap-8 md:gap-10" style="grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));">
-                            ${category.items.map(item => `
-                                <div class="group bg-[#F9F7F5] rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden flex flex-col border border-[#e8e2dd] item-card" data-item-id="${item.id}">
-                                    <div class="h-40 w-full overflow-hidden">
-                                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-                                    </div>
-                                    <div class="flex-1 flex flex-col p-4">
-                                        <h4 class="text-base font-bold text-[#1E434B] leading-snug mb-1 item-name" data-item-id="${item.id}">${item.name}</h4>
-                                        <p class="text-xs text-gray-600 leading-snug mb-3 line-clamp-4">${item.description}</p>
-                                        <div class="mt-auto flex items-center justify-between pt-2">
-                                            <span class="text-[#1E434B] font-bold text-sm">₹${item.price}</span>
-                                            <label class="flex items-center gap-1.5 text-xs select-none font-medium">
-                                                <input type="checkbox" class="form-checkbox h-4 w-4 text-[#1E434B] rounded" value="${item.name}" data-price="${item.price}">
-                                                <span>Select</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            `).join('')}
+                section.items.forEach((item) => {
+                    const label = document.createElement('label');
+                    label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
+                    label.innerHTML = `
+                        <div class="flex items-center">
+                            <input type="checkbox" id="${item.id}" data-price="${item.price}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}">
+                            <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
                         </div>
-                    </div>
-                `).join('');
+                        <span class="font-bold text-[#1E434B]">₹${item.price}</span>
+                    `;
+                    menuContainer.appendChild(label);
+                });
+            });
 
-                // Rebind checkbox listeners after render
-                bindSelectionHandlers();
-            }
+            const itemCheckboxes = Array.from(document.querySelectorAll('.item-checkbox'));
 
             function getSelectedItemsData() {
-                const checkboxes = document.querySelectorAll('#menu-items .form-checkbox');
                 const selected = [];
                 let total = 0;
-                checkboxes.forEach(cb => {
+                itemCheckboxes.forEach(cb => {
                     if (cb.checked) {
                         selected.push(cb.value);
-                        total += parseInt(cb.getAttribute('data-price'), 10) || 0;
+                        total += Number(cb.dataset.price || 0);
                     }
                 });
                 return { selected, total };
             }
 
-            function updateSelectionFeedback() {
+            const updateWhatsAppLink = () => {
+                const base = "https://wa.me/917705982880?text=";
                 const { selected, total } = getSelectedItemsData();
-                selectionFeedback.textContent = selected.length === 0
-                    ? 'Select items or click a card for details.'
-                    : `${selected.length} item(s) selected • Est. total ₹${total}`;
-            }
+                let message;
+                if (selected.length > 0) {
+                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). My desired pickup date and time is: [Please specify]`;
+                } else {
+                    message = "Hi! I'd like to place an order for a Diwali hamper.";
+                }
+                const finalUrl = base + encodeURIComponent(message);
+                navWhatsAppBtn.href = finalUrl;
+                footerWhatsAppBtn.href = finalUrl;
+                mobileWhatsAppBtn.href = finalUrl;
+            };
 
-            function updateWhatsAppLink() {
+            const updateSelectionFeedback = () => {
                 const { selected, total } = getSelectedItemsData();
-                const base = 'https://wa.me/917705982880?text=';
-                const msg = selected.length === 0
-                    ? 'Hi! I\'d like to place an order for a Diwali hamper.'
-                    : `Hi! I\'d like to order a hamper with: ${selected.join(', ')}. Estimated total ₹${total}.`;
-                const encoded = encodeURIComponent(msg);
-                [navWhatsAppBtn, footerWhatsAppBtn, mobileWhatsAppBtn].forEach(btn => { if (btn) btn.href = base + encoded; });
-            }
+                if (selected.length === 0) {
+                    selectionFeedback.textContent = `Select items or click names for details.`;
+                } else {
+                    selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
+                }
+            };
 
-            function bindSelectionHandlers() {
-                const checkboxes = document.querySelectorAll('#menu-items .form-checkbox');
-                checkboxes.forEach(cb => {
-                    cb.addEventListener('change', () => {
-                        updateSelectionFeedback();
-                        updateWhatsAppLink();
-                    });
+            itemCheckboxes.forEach((checkbox) => {
+                checkbox.addEventListener('change', () => {
+                    updateWhatsAppLink();
+                    updateSelectionFeedback();
                 });
-                updateSelectionFeedback();
-                updateWhatsAppLink();
-            }
-
-            // Initial render
-            renderMenu();
+            });
 
             // --- Modal Logic ---
             menuContainer.addEventListener('click', (e) => {
