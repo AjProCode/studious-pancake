@@ -311,35 +311,6 @@
         // Replace the previous DOMContentLoaded script with the dynamic menu renderer and selection logic
         document.addEventListener('DOMContentLoaded', () => {
             // --- Data ---
-            const menuData = [
-                {
-                    category: "Sweet Treats",
-                    items: [
-                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/MCRC.jpeg', description: "Think laddoo meets bouquet - The joy of motichoor meets the romance of roses in this festive show-stopper cake." },
-                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/1.jpg', description: "Tangy, creamy, dreamy — lemon cheesecake turned into poppable little truffles." },
-                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/2.jpg', description: "Bite-sized, crinkled, and ready to charm." },
-                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/3.jpg', description: "Golden citrus and sugar sparkle in every delicate crinkle bite." },
-                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB1.jpeg', description: "Thin, crisp, chocolatey — festive snacking at its best." },
-                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/NFB.jpeg', description: "A little bite, a lot of Nutella love." },
-                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/BK.jpeg', description: "Not your nani’s katli — this one’s loaded with extra almond bling." },
-                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/4.jpg', description: "Grandma’s sattu, apricot’s sass — all in one bar." },
-                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/5.jpg', description: "Gluten-free, fudgy, and crunchy - A festive bite of guilt-free joy." },
-                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/6.jpg', description: "The beloved Karachi biscuit — festive, fruity, and forever timeless." },
-                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/7.jpg', description: "An artisanal blend inspired by the iconic Calcutta paan — refreshing, and indulgent." },
-                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/8.jpg', description: "Espresso buzz meets hazelnut crunch." }
-                    ]
-                },
-                {
-                    category: "Savory Treats",
-                    items: [
-                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/9.jpg', description: "Your bagel seasoning, now on a crunch." },
-                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/10.jpg', description: "Bright, spicy, and addictive enough to share (or not)." },
-                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/11.jpg', description: "Nuts just got hotter." },
-                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/12.jpg', description: "Sesame crunch, Parmesan punch." },
-                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/13.jpg', description: "Celebrating health and flavour — millets baked into crisp golden crackers." }
-                    ]
-                }
-            ];
 
             // --- Element Selectors ---
             const menuContainer = document.getElementById('menu-items');
@@ -363,7 +334,6 @@
             });
 
             // --- Menu & Order Logic ---
-// ...existing code...
             // Sweet Treats
             const sweetTreats = [
                 { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/MAIN.jpeg', description: "Tangy, creamy, dreamy — lemon cheesecake turned into poppable little truffles." },
@@ -388,47 +358,53 @@
                 { category: "Sweet Treats", items: sweetTreats },
                 { category: "Savory Treats", items: savoryTreats }
             ];
-// ...existing code...
-// ...existing code...
-                            { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/MAIN.jpeg', description: "Your bagel seasoning, now on a crunch." },
-                            { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/MAIN.jpeg', description: "Bright, spicy, and addictive enough to share (or not)." },
-                            { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/MAIN.jpeg', description: "Nuts just got hotter." },
-                            { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/MAIN.jpeg', description: "Sesame crunch, Parmesan punch." },
-                            { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/MAIN.jpeg', description: "Celebrating health and flavour — millets baked into crisp golden crackers." }
-                const selected = [];
-                let total = 0;
-                itemCheckboxes.forEach(cb => {
-                    if (cb.checked) {
-                        selected.push(cb.value);
-                        total += Number(cb.dataset.price || 0);
-                    }
-                });
-                return { selected, total };
+
+            // --- Menu Rendering ---
+            function renderMenu() {
+                menuContainer.innerHTML = menuData.map(category => `
+                    <div class="mb-12">
+                        <h3 class="text-3xl font-bold text-[#1E434B] mb-6">${category.category}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                            ${category.items.map(item => `
+                                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-start gap-4">
+                                    <img src="${item.image}" alt="${item.name}" class="w-full h-40 object-cover rounded-md">
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-semibold text-[#1E434B] item-name" data-item-id="${item.id}">${item.name}</h4>
+                                        <p class="text-gray-600 mb-4">${item.description}</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-lg font-bold text-[#1E434B]">₹${item.price}</span>
+                                            <label class="flex items-center gap-2">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-[#1E434B] rounded" value="${item.name}" data-price="${item.price}">
+                                                <span class="text-gray-700">Select</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
             }
 
-            const updateWhatsAppLink = () => {
-                const base = "https://wa.me/917705982880?text=";
-                const { selected, total } = getSelectedItemsData();
-                let message;
-                if (selected.length > 0) {
-                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). My desired pickup date and time is: [Please specify]`;
-                } else {
-                    message = "Hi! I'd like to place an order for a Diwali hamper.";
-                }
-                const finalUrl = base + encodeURIComponent(message);
-                navWhatsAppBtn.href = finalUrl;
-                footerWhatsAppBtn.href = finalUrl;
-                mobileWhatsAppBtn.href = finalUrl;
-            };
+            renderMenu();
 
-            const updateSelectionFeedback = () => {
-                const { selected, total } = getSelectedItemsData();
-                if (selected.length === 0) {
-                    selectionFeedback.textContent = `Select items or click names for details.`;
-                } else {
-                    selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
-                }
-            };
+            // --- Selection Logic ---
+            const itemCheckboxes = document.querySelectorAll('.form-checkbox');
+            function getSelectedItemsData() {
+    // ...existing code...
+    // This function only returns selected and total
+    // Feedback update is handled in updateSelectionFeedback()
+    return { selected, total };
+}
+
+function updateSelectionFeedback() {
+    const { selected, total } = getSelectedItemsData();
+    if (selected.length === 0) {
+        selectionFeedback.textContent = `Select items or click names for details.`;
+    } else {
+        selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
+    }
+}
 
             itemCheckboxes.forEach((checkbox) => {
                 checkbox.addEventListener('change', () => {
