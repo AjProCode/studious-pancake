@@ -55,27 +55,22 @@
 
         /* Desktop layout improvements */
         @media (min-width: 1024px) {
-            .container {
-                max-width: 1600px !important;
-            }
+            .container { max-width: 1600px !important; }
+            .menu-wrapper { max-width: 100% !important; }
             #menu-items {
                 display: grid !important;
                 grid-template-columns: repeat(4, 1fr) !important;
-                gap: 32px 24px !important;
+                gap: 40px 32px !important;
                 width: 100% !important;
             }
-            .carousel-container {
-                max-width: 1000px !important;
-            }
-            .hero-bg {
-                min-height: 600px !important;
-                height: 70vh !important;
-            }
-            section, .py-20, .md\:py-28 {
-                padding-top: 40px !important;
-                padding-bottom: 40px !important;
-            }
+            .carousel-container { max-width: 1000px !important; }
+            .hero-bg { min-height: 600px !important; height: 70vh !important; }
+            section, .py-20, .md\:py-28 { padding-top: 40px !important; padding-bottom: 40px !important; }
         }
+        @media (min-width: 1536px) {
+            #menu-items { grid-template-columns: repeat(5, 1fr) !important; }
+        }
+        .hamper-hero-img { max-width: 420px; }
         /* Back to top button */
         #back-to-top {
             transition: opacity 0.3s, transform 0.3s;
