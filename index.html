@@ -56,13 +56,16 @@
         /* Desktop layout improvements */
         @media (min-width: 1024px) {
             .container {
-                max-width: 1400px !important;
+                max-width: 1600px !important;
             }
             #menu-items {
-                grid-template-columns: repeat(3, 1fr) !important;
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 32px 24px !important;
+                width: 100% !important;
             }
             .carousel-container {
-                max-width: 900px !important;
+                max-width: 1000px !important;
             }
             .hero-bg {
                 min-height: 600px !important;
