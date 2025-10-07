@@ -20,22 +20,18 @@
             font-family: 'Playfair Display', serif;
         }
         .hero-bg {
-            /* The image 'Photos/MAIN.jpeg' should be in the Photos folder to appear. */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Photos/MAIN.jpeg');
         }
-        /* Custom button shadow for a bold look */
         .btn-shadow {
             box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);
         }
         .btn-shadow:hover {
             box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
         }
-        /* Style for custom checkbox */
         .form-checkbox:checked {
             background-color: #1E434B;
             border-color: #1E434B;
         }
-        /* Carousel custom styles */
         .carousel-container {
             position: relative;
         }
@@ -47,16 +43,35 @@
             min-width: 100%;
             box-sizing: border-box;
         }
-        /* Mobile Menu */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
-        /* Modal Styles */
         .modal-overlay {
             transition: opacity 0.3s ease;
         }
         .modal-content {
             transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Desktop layout improvements */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1400px !important;
+            }
+            #menu-items {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            .carousel-container {
+                max-width: 900px !important;
+            }
+            .hero-bg {
+                min-height: 600px !important;
+                height: 70vh !important;
+            }
+            section, .py-20, .md\:py-28 {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
         }
         /* Back to top button */
         #back-to-top {
