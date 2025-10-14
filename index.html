@@ -178,10 +178,27 @@
                                         <input id="menu-search" type="search" placeholder="Search by name or flavour" class="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent" autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="w-full md:max-w-md">
+                                <div class="w-full md:max-w-xs md:text-right relative" id="category-filter-wrapper">
                                     <p class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2 text-left md:text-right">Filter by Category</p>
-                                    <div id="category-filters" class="flex flex-wrap gap-2 justify-center md:justify-end"></div>
-                                    <button id="reset-filters" type="button" class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1E434B] hover:text-[#163238] transition-colors mx-auto md:ml-auto md:mr-0">
+                                    <button id="category-filter-toggle" type="button" class="w-full md:w-auto flex items-center justify-between gap-3 rounded-full border border-[#1E434B] px-4 py-2 text-sm font-semibold text-[#1E434B] hover:bg-[#1E434B]/10 transition" aria-haspopup="true" aria-expanded="false">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                                            Filters
+                                        </span>
+                                        <span id="category-filter-summary" class="text-xs font-semibold uppercase tracking-wide text-[#1E434B]/80">All categories</span>
+                                    </button>
+                                    <div id="category-filter-dropdown" class="absolute right-0 mt-2 w-full md:w-72 bg-white border border-gray-200 rounded-lg shadow-xl p-4 space-y-4 hidden z-20 text-left">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase">Pick Categories</h4>
+                                            <button id="category-filter-select-all" type="button" class="text-xs font-semibold text-[#1E434B] hover:text-[#163238]">Select All</button>
+                                        </div>
+                                        <div id="category-filter-options" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <button id="category-filter-clear" type="button" class="text-sm font-semibold text-gray-500 hover:text-gray-700">Clear</button>
+                                            <button id="category-filter-apply" type="button" class="px-4 py-2 text-sm font-semibold text-white bg-[#1E434B] rounded-full hover:bg-[#163238] transition">Done</button>
+                                        </div>
+                                    </div>
+                                    <button id="reset-filters" type="button" class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1E434B] hover:text-[#163238] transition-colors md:ml-auto">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 4.5l15 15m0-15l-15 15"></path></svg>
                                         Reset Filters
                                     </button>
@@ -441,7 +458,13 @@
             const preloader = document.getElementById('preloader');
             const desktopNav = document.getElementById('desktop-nav');
             const searchInput = document.getElementById('menu-search');
-            const categoryFilters = document.getElementById('category-filters');
+            const categoryFilterToggle = document.getElementById('category-filter-toggle');
+            const categoryFilterDropdown = document.getElementById('category-filter-dropdown');
+            const categoryFilterSummary = document.getElementById('category-filter-summary');
+            const categoryFilterOptions = document.getElementById('category-filter-options');
+            const categoryFilterSelectAll = document.getElementById('category-filter-select-all');
+            const categoryFilterClear = document.getElementById('category-filter-clear');
+            const categoryFilterApply = document.getElementById('category-filter-apply');
             const resetFiltersBtn = document.getElementById('reset-filters');
             const hamperQuantityInput = document.getElementById('hamper-quantity');
 
@@ -453,8 +476,9 @@
             // --- Menu & Order Logic ---
             let quantityInputs = [];
             const itemQuantities = new Map();
-            let activeCategory = 'all';
             let searchTerm = '';
+            const allCategories = [...new Set(menuData.map(section => section.category))];
+            const selectedCategories = new Set(allCategories);
 
             const findItemById = (itemId) => {
                 for (const section of menuData) {
@@ -485,6 +509,51 @@
                 } else {
                     itemQuantities.delete(itemId);
                 }
+            };
+
+            const updateCategoryFilterSummary = () => {
+                if (!categoryFilterSummary) return;
+                let summaryText;
+                if (selectedCategories.size === 0) {
+                    summaryText = 'Select categories';
+                } else if (selectedCategories.size === allCategories.length) {
+                    summaryText = 'All categories';
+                } else if (selectedCategories.size === 1) {
+                    summaryText = `${Array.from(selectedCategories)[0]}`;
+                } else {
+                    summaryText = `${selectedCategories.size} selected`;
+                }
+                categoryFilterSummary.textContent = summaryText;
+            };
+
+            const handleCategoryCheckboxChange = (event) => {
+                const checkbox = event.target;
+                if (!(checkbox instanceof HTMLInputElement)) return;
+                const category = checkbox.value;
+                if (!category) return;
+                if (checkbox.checked) {
+                    selectedCategories.add(category);
+                } else {
+                    selectedCategories.delete(category);
+                }
+                updateCategoryFilterSummary();
+                renderMenu();
+            };
+
+            const renderCategoryFilterOptions = () => {
+                if (!categoryFilterOptions) return;
+                categoryFilterOptions.innerHTML = allCategories.map((category) => {
+                    const checked = selectedCategories.has(category) ? 'checked' : '';
+                    return `
+                        <label class="flex items-center gap-2 text-sm text-gray-700">
+                            <input type="checkbox" value="${category}" class="category-filter-checkbox h-4 w-4 text-[#1E434B] border-gray-300 rounded" ${checked}>
+                            <span>${category}</span>
+                        </label>
+                    `;
+                }).join('');
+                categoryFilterOptions.querySelectorAll('.category-filter-checkbox').forEach((checkbox) => {
+                    checkbox.addEventListener('change', handleCategoryCheckboxChange);
+                });
             };
 
             function handleQuantityInput(event) {
@@ -583,7 +652,7 @@
 
                 menuData.forEach((section) => {
                     const filteredItems = section.items.filter((item) => {
-                        const matchesCategory = activeCategory === 'all' || section.category === activeCategory;
+                        const matchesCategory = selectedCategories.size === 0 ? false : selectedCategories.has(section.category);
                         const matchesSearch = normalizedSearch.length === 0
                             || item.name.toLowerCase().includes(normalizedSearch)
                             || item.description.toLowerCase().includes(normalizedSearch);
@@ -649,26 +718,6 @@
                 updateSelectionFeedback();
             }
 
-            function renderCategoryFilters() {
-                if (!categoryFilters) return;
-                const categories = ['all', ...new Set(menuData.map(section => section.category))];
-                categoryFilters.innerHTML = categories.map((category) => {
-                    const isActive = activeCategory === category;
-                    const label = category === 'all' ? 'All' : category;
-                    const baseClasses = 'px-4 py-2 rounded-full border text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-                    const activeClasses = 'bg-[#1E434B] text-white border-[#1E434B]';
-                    const inactiveClasses = 'bg-white text-[#1E434B] border-[#1E434B] hover:bg-[#1E434B]/10';
-                    return `<button type="button" data-category="${category}" class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}" aria-pressed="${isActive}">${label}</button>`;
-                }).join('');
-                categoryFilters.querySelectorAll('button').forEach((button) => {
-                    button.addEventListener('click', () => {
-                        activeCategory = button.dataset.category || 'all';
-                        renderCategoryFilters();
-                        renderMenu();
-                    });
-                });
-            }
-
             if (searchInput) {
                 searchInput.addEventListener('input', (event) => {
                     searchTerm = event.target.value || '';
@@ -678,12 +727,23 @@
 
             if (resetFiltersBtn) {
                 resetFiltersBtn.addEventListener('click', () => {
-                    activeCategory = 'all';
                     searchTerm = '';
                     if (searchInput) {
                         searchInput.value = '';
                     }
-                    renderCategoryFilters();
+                    selectedCategories.clear();
+                    allCategories.forEach(category => selectedCategories.add(category));
+                    if (hamperQuantityInput) {
+                        hamperQuantityInput.value = '1';
+                        hamperQuantityInput.dispatchEvent(new Event('input'));
+                        hamperQuantityInput.dispatchEvent(new Event('blur'));
+                    }
+                    if (categoryFilterDropdown && categoryFilterToggle) {
+                        categoryFilterDropdown.classList.add('hidden');
+                        categoryFilterToggle.setAttribute('aria-expanded', 'false');
+                    }
+                    renderCategoryFilterOptions();
+                    updateCategoryFilterSummary();
                     renderMenu();
                 });
             }
@@ -702,7 +762,59 @@
                 hamperQuantityInput.addEventListener('blur', handleHamperBlur);
             }
 
-            renderCategoryFilters();
+            if (categoryFilterToggle && categoryFilterDropdown) {
+                const toggleDropdown = () => {
+                    const willOpen = categoryFilterDropdown.classList.contains('hidden');
+                    categoryFilterDropdown.classList.toggle('hidden');
+                    categoryFilterToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                };
+                categoryFilterToggle.addEventListener('click', toggleDropdown);
+
+                const closeDropdown = () => {
+                    categoryFilterDropdown.classList.add('hidden');
+                    categoryFilterToggle.setAttribute('aria-expanded', 'false');
+                };
+
+                if (categoryFilterApply) {
+                    categoryFilterApply.addEventListener('click', closeDropdown);
+                }
+
+                document.addEventListener('click', (event) => {
+                    if (categoryFilterDropdown.classList.contains('hidden')) return;
+                    const target = event.target;
+                    if (!categoryFilterDropdown.contains(target) && !categoryFilterToggle.contains(target)) {
+                        closeDropdown();
+                    }
+                });
+
+                window.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && !categoryFilterDropdown.classList.contains('hidden')) {
+                        closeDropdown();
+                    }
+                });
+            }
+
+            if (categoryFilterClear) {
+                categoryFilterClear.addEventListener('click', () => {
+                    selectedCategories.clear();
+                    renderCategoryFilterOptions();
+                    updateCategoryFilterSummary();
+                    renderMenu();
+                });
+            }
+
+            if (categoryFilterSelectAll) {
+                categoryFilterSelectAll.addEventListener('click', () => {
+                    selectedCategories.clear();
+                    allCategories.forEach(category => selectedCategories.add(category));
+                    renderCategoryFilterOptions();
+                    updateCategoryFilterSummary();
+                    renderMenu();
+                });
+            }
+
+            renderCategoryFilterOptions();
+            updateCategoryFilterSummary();
             renderMenu();
 
             // --- Modal Logic ---
