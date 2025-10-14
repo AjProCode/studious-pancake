@@ -164,6 +164,25 @@
 
                 <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
                     <img src="Photos/MAIN.jpeg" alt="Diwali Hamper" class="w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
+                    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
+                        <div class="w-full md:max-w-sm">
+                            <label for="menu-search" class="block text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Search Treats</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-4 flex items-center text-gray-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10.5A6.5 6.5 0 104 10.5a6.5 6.5 0 0013 0z"></path></svg>
+                                </span>
+                                <input id="menu-search" type="search" placeholder="Search by name or flavour" class="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="w-full md:max-w-md">
+                            <p class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2 text-left md:text-right">Filter by Category</p>
+                            <div id="category-filters" class="flex flex-wrap gap-2 justify-center md:justify-end"></div>
+                            <button id="reset-filters" type="button" class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1E434B] hover:text-[#163238] transition-colors mx-auto md:ml-auto md:mr-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 4.5l15 15m0-15l-15 15"></path></svg>
+                                Reset Filters
+                            </button>
+                        </div>
+                    </div>
                     <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
                         <!-- menu will be rendered dynamically -->
                     </div>
@@ -340,7 +359,7 @@
                         { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/MAIN.jpeg', description: "Fruity, buttery biscuits packed with tutti frutti nostalgia.", storage: "Store in an airtight container at room temperature; individually seal for longer storage.", shelfLife: "Up to 2 weeks at room temperature." },
                         { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB1.jpeg', description: "Thin, crisp chocolate brownie shards for snacking or gifting.", storage: "Store in an airtight container; refrigerate if the chocolate softens.", shelfLife: "Up to 5 days at room temperature; refrigerate if needed." },
                         { id: "choco-chunk-cookies", name: "Choco Chunk Cookies", price: 180, image: 'Photos/MAIN.jpeg', description: "Classic cookies loaded with melty chocolate chunks.", storage: "Store in an airtight container at room temperature.", shelfLife: "Up to 7 days at room temperature." },
-                        { id: "ragi-cookies", name: "Ragi Cookies", price: 180, image: 'Photos/MAIN.jpeg', description: "Earthy ragi cookies that bring a wholesome crunch to teatime Gluten Free.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 15 days at room temperature." }
+                        { id: "ragi-cookies", name: "Ragi Cookies", price: 180, image: 'Photos/RC1.jpeg', description: "Earthy ragi cookies that bring a wholesome crunch to teatime Gluten Free.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 15 days at room temperature." }
                     ]
                 },
                 {
@@ -349,7 +368,7 @@
                         { id: "spinach-garlic-sticks", name: "Spinach Garlic Sticks", price: 160, image: 'Photos/MAIN.jpeg', description: "Crisp savory batons infused with spinach and garlic.", storage: "Store in an airtight container at room temperature; reheat to refresh.", shelfLife: "Up to 2 weeks at room temperature; refresh in a 150C oven for 3-4 minutes." },
                         { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 180, image: 'Photos/MAIN.jpeg', description: "Savory sticks with nutty sesame and parmesan crunch.", storage: "Store in an airtight container at room temperature; reheat to refresh.", shelfLife: "Up to 2 weeks at room temperature; refresh in a 150C oven for 3-4 minutes." },
                         { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 150, image: 'Photos/MAIN.jpeg', description: "Golden crackers baked with a blend of nutrient rich millets.", storage: "Store in an airtight container at room temperature; re-crisp in the oven if needed.", shelfLife: "Up to 2 weeks at room temperature; re-crisp in a 150C oven for 3-4 minutes." },
-                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/MAIN.jpeg', description: "Popped makhana tossed in our everything bagel seasoning.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 2 weeks at room temperature." },
+                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/EBMM.jpeg', description: "Popped makhana tossed in our everything bagel seasoning.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 2 weeks at room temperature." },
                         { id: "chili-lime-millet", name: "Chilli Lime Millet Snack Mix", price: 170, image: 'Photos/MAIN.jpeg', description: "Zesty millet based mix with bright lime and chili heat.", storage: "Store in a clean airtight container away from moisture and direct sunlight; add moisture absorbers for longer storage.", shelfLife: "Up to 3 weeks at room temperature." },
                         { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/MAIN.jpeg', description: "Crunchy cashews coated in a bold sriracha glaze.", storage: "Store in a clean airtight container in the refrigerator away from direct sunlight.", shelfLife: "Up to 10 days at room temperature; up to 5 weeks refrigerated." }
                     ]
@@ -376,7 +395,7 @@
                 {
                     category: "Other Sweets & Mukhwas",
                     items: [
-                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/MAIN.jpeg', description: "A refreshing mukhwas inspired by classic Calcutta paan.", storage: "Store in a clean, dry, airtight glass or steel container away from direct sunlight; refrigerate for longer storage.", shelfLife: "Up to 10 days at room temperature; up to 1 month refrigerated." },
+                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/CPM1.jpeg', description: "A refreshing mukhwas inspired by classic Calcutta paan.", storage: "Store in a clean, dry, airtight glass or steel container away from direct sunlight; refrigerate for longer storage.", shelfLife: "Up to 10 days at room temperature; up to 1 month refrigerated." },
                         { id: "millet-cranberry-mukhwas", name: "Millet Cranberry Mukhwas", price: 170, image: 'Photos/MAIN.jpeg', description: "Crunchy millet based mukhwas balanced with tart cranberries.", storage: "Store in a clean, dry, airtight glass or steel container away from direct sunlight; refrigerate for longer storage.", shelfLife: "Up to 10 days at room temperature; up to 1 month refrigerated." },
                         { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/MAIN.jpeg', description: "Roasted hazelnuts dusted with espresso kissed frosting.", storage: "Store in a clean airtight container in a cool, dry place.", shelfLife: "Up to 4 weeks at room temperature." }
                         
@@ -405,6 +424,9 @@
             const modalShelf = document.getElementById('modal-shelf');
             const preloader = document.getElementById('preloader');
             const desktopNav = document.getElementById('desktop-nav');
+            const searchInput = document.getElementById('menu-search');
+            const categoryFilters = document.getElementById('category-filters');
+            const resetFiltersBtn = document.getElementById('reset-filters');
 
             // --- Preloader ---
             window.addEventListener('load', () => {
@@ -412,45 +434,37 @@
             });
 
             // --- Menu & Order Logic ---
-            menuContainer.innerHTML = '';
-            menuData.forEach((section) => {
-                const headerWrapper = document.createElement('div');
-                headerWrapper.className = 'md:col-span-2 text-center my-6';
-                headerWrapper.innerHTML = `<h3 class="text-2xl font-bold text-[#1E434B] inline-block border-b-2 border-[#1E434B] pb-2">${section.category}</h3>`;
-                menuContainer.appendChild(headerWrapper);
+            let itemCheckboxes = [];
+            const selectedItemIds = new Set();
+            let activeCategory = 'all';
+            let searchTerm = '';
 
-                section.items.forEach((item) => {
-                    const label = document.createElement('label');
-                    label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
-                    const hasPrice = typeof item.price === 'number' && item.price > 0;
-                    const priceDataValue = hasPrice ? item.price : '';
-                    const priceDisplay = hasPrice ? `₹${item.price}` : 'Price on request';
-                    label.innerHTML = `
-                        <div class="flex items-center">
-                            <input type="checkbox" id="${item.id}" data-price="${priceDataValue}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}">
-                            <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
-                        </div>
-                        <span class="font-bold text-[#1E434B]">${priceDisplay}</span>
-                    `;
-                    menuContainer.appendChild(label);
-                });
-            });
-
-            const itemCheckboxes = Array.from(document.querySelectorAll('.item-checkbox'));
+            const findItemById = (itemId) => {
+                for (const section of menuData) {
+                    const match = section.items.find(item => item.id === itemId);
+                    if (match) {
+                        return match;
+                    }
+                }
+                return null;
+            };
 
             function getSelectedItemsData() {
                 const selected = [];
                 let total = 0;
-                itemCheckboxes.forEach(cb => {
-                    if (cb.checked) {
-                        selected.push(cb.value);
-                        total += Number(cb.dataset.price || 0);
+                selectedItemIds.forEach((itemId) => {
+                    const item = findItemById(itemId);
+                    if (item) {
+                        selected.push(item.name);
+                        if (typeof item.price === 'number' && item.price > 0) {
+                            total += Number(item.price);
+                        }
                     }
                 });
                 return { selected, total };
             }
 
-            const updateWhatsAppLink = () => {
+            function updateWhatsAppLink() {
                 const base = "https://wa.me/917705982880?text=";
                 const { selected, total } = getSelectedItemsData();
                 let message;
@@ -465,9 +479,9 @@
                 navWhatsAppBtn.href = finalUrl;
                 footerWhatsAppBtn.href = finalUrl;
                 mobileWhatsAppBtn.href = finalUrl;
-            };
+            }
 
-            const updateSelectionFeedback = () => {
+            function updateSelectionFeedback() {
                 const { selected, total } = getSelectedItemsData();
                 if (selected.length === 0) {
                     selectionFeedback.textContent = `Select items or click names for details.`;
@@ -476,21 +490,121 @@
                 } else {
                     selectionFeedback.textContent = `${selected.length} item(s) selected • Pricing on request`;
                 }
-            };
+            }
 
-            itemCheckboxes.forEach((checkbox) => {
-                checkbox.addEventListener('change', () => {
-                    updateWhatsAppLink();
-                    updateSelectionFeedback();
+            function renderMenu() {
+                if (!menuContainer) return;
+                menuContainer.innerHTML = '';
+                const normalizedSearch = searchTerm.trim().toLowerCase();
+                let renderedCount = 0;
+
+                menuData.forEach((section) => {
+                    const filteredItems = section.items.filter((item) => {
+                        const matchesCategory = activeCategory === 'all' || section.category === activeCategory;
+                        const matchesSearch = normalizedSearch.length === 0
+                            || item.name.toLowerCase().includes(normalizedSearch)
+                            || item.description.toLowerCase().includes(normalizedSearch);
+                        return matchesCategory && matchesSearch;
+                    });
+
+                    if (filteredItems.length === 0) {
+                        return;
+                    }
+
+                    const headerWrapper = document.createElement('div');
+                    headerWrapper.className = 'md:col-span-2 text-center my-6';
+                    headerWrapper.innerHTML = `<h3 class="text-2xl font-bold text-[#1E434B] inline-block border-b-2 border-[#1E434B] pb-2">${section.category}</h3>`;
+                    menuContainer.appendChild(headerWrapper);
+
+                    filteredItems.forEach((item) => {
+                        const label = document.createElement('label');
+                        label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
+                        const hasPrice = typeof item.price === 'number' && item.price > 0;
+                        const priceDataValue = hasPrice ? item.price : '';
+                        const priceDisplay = hasPrice ? `₹${item.price}` : 'Price on request';
+                        label.innerHTML = `
+                            <div class="flex items-center">
+                                <input type="checkbox" id="${item.id}" data-price="${priceDataValue}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}" ${selectedItemIds.has(item.id) ? 'checked' : ''}>
+                                <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
+                            </div>
+                            <span class="font-bold text-[#1E434B]">${priceDisplay}</span>
+                        `;
+                        menuContainer.appendChild(label);
+                        renderedCount += 1;
+                    });
                 });
-            });
+
+                if (renderedCount === 0) {
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'md:col-span-2 text-center py-10 text-gray-500';
+                    emptyState.textContent = 'No treats match your filters. Try adjusting the search or category.';
+                    menuContainer.appendChild(emptyState);
+                }
+
+                itemCheckboxes = Array.from(document.querySelectorAll('.item-checkbox'));
+                itemCheckboxes.forEach((checkbox) => {
+                    checkbox.addEventListener('change', () => {
+                        if (checkbox.checked) {
+                            selectedItemIds.add(checkbox.id);
+                        } else {
+                            selectedItemIds.delete(checkbox.id);
+                        }
+                        updateWhatsAppLink();
+                        updateSelectionFeedback();
+                    });
+                });
+
+                updateWhatsAppLink();
+                updateSelectionFeedback();
+            }
+
+            function renderCategoryFilters() {
+                if (!categoryFilters) return;
+                const categories = ['all', ...new Set(menuData.map(section => section.category))];
+                categoryFilters.innerHTML = categories.map((category) => {
+                    const isActive = activeCategory === category;
+                    const label = category === 'all' ? 'All' : category;
+                    const baseClasses = 'px-4 py-2 rounded-full border text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+                    const activeClasses = 'bg-[#1E434B] text-white border-[#1E434B]';
+                    const inactiveClasses = 'bg-white text-[#1E434B] border-[#1E434B] hover:bg-[#1E434B]/10';
+                    return `<button type="button" data-category="${category}" class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}" aria-pressed="${isActive}">${label}</button>`;
+                }).join('');
+                categoryFilters.querySelectorAll('button').forEach((button) => {
+                    button.addEventListener('click', () => {
+                        activeCategory = button.dataset.category || 'all';
+                        renderCategoryFilters();
+                        renderMenu();
+                    });
+                });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (event) => {
+                    searchTerm = event.target.value || '';
+                    renderMenu();
+                });
+            }
+
+            if (resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', () => {
+                    activeCategory = 'all';
+                    searchTerm = '';
+                    if (searchInput) {
+                        searchInput.value = '';
+                    }
+                    renderCategoryFilters();
+                    renderMenu();
+                });
+            }
+
+            renderCategoryFilters();
+            renderMenu();
 
             // --- Modal Logic ---
             menuContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('item-name')) {
                     const itemId = e.target.dataset.itemId;
-                    const allItems = menuData.flatMap(cat => cat.items);
-                    const item = allItems.find(i => i.id === itemId);
+                    const item = findItemById(itemId);
                     if (item) {
                         modalImage.src = item.image;
                         modalImage.alt = item.name;
@@ -546,6 +660,12 @@
                 { src: 'Photos/jc.jpeg', caption: 'Our delightful layered moist and delicious jar cake' },
                 { src: 'Photos/ccc.jpeg', caption: 'Crunchy and gooey cookie goodness' },
                 { src: 'Photos/sc.jpeg', caption: 'Spicy and sweet the perfectly imperfect combo-paired with the irresistible texture of cashews' },
+                { src: 'Photos/CPM1.jpeg', caption: 'A refreshing mukhwas inspired by classic Calcutta paan.' },
+                { src: 'Photos/EBMM.jpeg', caption: 'Popped makhana tossed in our everything bagel seasoning.' },
+                { src: 'Photos/RC1.jpeg', caption: 'Earthy ragi cookies that bring a wholesome crunch to teatime.' },
+                { src: 'Photos/H2.jpeg', caption: 'Festive hamper arrangement tailored for heartfelt gifting.' },
+                { src: 'Photos/H3.jpeg', caption: 'Another curated hamper showcasing our Diwali favourites.' }
+                
                 
             ];
             const slidesContainer = document.querySelector('#image-carousel .carousel-slides');
