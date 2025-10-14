@@ -163,34 +163,40 @@
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Select as many items as you like for your custom hamper. Each item weighs approximately 150g, ensuring a generous portion of our freshly baked goodies.</p>
 
                 <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg text-left">
-                    <img src="Photos/MAIN.jpeg" alt="Diwali Hamper" class="w-full max-w-md mx-auto rounded-lg shadow-md mb-8">
-                    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
-                        <div class="w-full md:max-w-sm">
-                            <label for="menu-search" class="block text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Search Treats</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-4 flex items-center text-gray-400">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10.5A6.5 6.5 0 104 10.5a6.5 6.5 0 0013 0z"></path></svg>
-                                </span>
-                                <input id="menu-search" type="search" placeholder="Search by name or flavour" class="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent" autocomplete="off">
+                    <div class="flex flex-col md:flex-row md:items-start md:gap-10 mb-6">
+                        <div class="md:w-1/2">
+                            <img src="Photos/MAIN.jpeg" alt="Diwali Hamper" class="w-full max-w-md md:max-w-full mx-auto md:mx-0 rounded-lg shadow-md mb-6 md:mb-0">
+                        </div>
+                        <div class="flex-1 space-y-6">
+                            <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                                <div class="w-full md:max-w-sm">
+                                    <label for="menu-search" class="block text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Search Treats</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-4 flex items-center text-gray-400">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10.5A6.5 6.5 0 104 10.5a6.5 6.5 0 0013 0z"></path></svg>
+                                        </span>
+                                        <input id="menu-search" type="search" placeholder="Search by name or flavour" class="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="w-full md:max-w-md">
+                                    <p class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2 text-left md:text-right">Filter by Category</p>
+                                    <div id="category-filters" class="flex flex-wrap gap-2 justify-center md:justify-end"></div>
+                                    <button id="reset-filters" type="button" class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1E434B] hover:text-[#163238] transition-colors mx-auto md:ml-auto md:mr-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 4.5l15 15m0-15l-15 15"></path></svg>
+                                        Reset Filters
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="w-full md:max-w-md">
-                            <p class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2 text-left md:text-right">Filter by Category</p>
-                            <div id="category-filters" class="flex flex-wrap gap-2 justify-center md:justify-end"></div>
-                            <button id="reset-filters" type="button" class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1E434B] hover:text-[#163238] transition-colors mx-auto md:ml-auto md:mr-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 4.5l15 15m0-15l-15 15"></path></svg>
-                                Reset Filters
-                            </button>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div class="flex flex-col text-left">
-                            <label for="hamper-quantity" class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Number of Hampers</label>
-                            <input id="hamper-quantity" type="number" min="1" value="1" class="rounded-md border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent w-full md:w-40" />
-                            <p class="mt-2 text-xs text-gray-600">We'll multiply your item quantities by the number of hampers.</p>
-                        </div>
-                        <div class="hidden md:flex flex-col justify-center text-sm text-gray-600">
-                            <p>Use the quantity controls beside each treat to customise the contents of every hamper.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex flex-col text-left">
+                                    <label for="hamper-quantity" class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Number of Hampers</label>
+                                    <input id="hamper-quantity" type="number" min="1" value="1" class="rounded-md border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent w-full md:w-40" />
+                                    <p class="mt-2 text-xs text-gray-600">We'll multiply your item quantities by the number of hampers.</p>
+                                </div>
+                                <div class="hidden md:flex flex-col justify-center text-sm text-gray-600">
+                                    <p>Use the quantity controls beside each treat to customise the contents of every hamper.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
@@ -840,7 +846,18 @@
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const sectionId = entry.target.id;
+                        const sectionId =
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        entry.target.id;
                         navLinks.forEach(link => {
                             link.classList.toggle('nav-link-active', link.dataset.section === sectionId);
                         });
