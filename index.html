@@ -647,7 +647,7 @@
 
                 menuData.forEach((section) => {
                     const filteredItems = section.items.filter((item) => {
-                        const matchesCategory = selectedCategories.size === 0 ? false : selectedCategories.has(section.category);
+                        const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(section.category);
                         const matchesSearch = normalizedSearch.length === 0
                             || item.name.toLowerCase().includes(normalizedSearch)
                             || item.description.toLowerCase().includes(normalizedSearch);
