@@ -183,6 +183,16 @@
                             </button>
                         </div>
                     </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="flex flex-col text-left">
+                            <label for="hamper-quantity" class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase mb-2">Number of Hampers</label>
+                            <input id="hamper-quantity" type="number" min="1" value="1" class="rounded-md border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B] focus:border-transparent w-full md:w-40" />
+                            <p class="mt-2 text-xs text-gray-600">We'll multiply your item quantities by the number of hampers.</p>
+                        </div>
+                        <div class="hidden md:flex flex-col justify-center text-sm text-gray-600">
+                            <p>Use the quantity controls beside each treat to customise the contents of every hamper.</p>
+                        </div>
+                    </div>
                     <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
                         <!-- menu will be rendered dynamically -->
                     </div>
@@ -427,6 +437,7 @@
             const searchInput = document.getElementById('menu-search');
             const categoryFilters = document.getElementById('category-filters');
             const resetFiltersBtn = document.getElementById('reset-filters');
+            const hamperQuantityInput = document.getElementById('hamper-quantity');
 
             // --- Preloader ---
             window.addEventListener('load', () => {
@@ -434,8 +445,8 @@
             });
 
             // --- Menu & Order Logic ---
-            let itemCheckboxes = [];
-            const selectedItemIds = new Set();
+            let quantityInputs = [];
+            const itemQuantities = new Map();
             let activeCategory = 'all';
             let searchTerm = '';
 
@@ -449,29 +460,93 @@
                 return null;
             };
 
+            const sanitizeQuantity = (value) => {
+                const parsed = Number(value);
+                if (Number.isNaN(parsed) || parsed < 0) return 0;
+                return Math.floor(parsed);
+            };
+
+            const sanitizeHamperQuantity = (value) => {
+                const parsed = Number(value);
+                if (Number.isNaN(parsed) || parsed < 1) return 1;
+                return Math.floor(parsed);
+            };
+
+            const setItemQuantity = (itemId, quantity) => {
+                const safeQuantity = sanitizeQuantity(quantity);
+                if (safeQuantity > 0) {
+                    itemQuantities.set(itemId, safeQuantity);
+                } else {
+                    itemQuantities.delete(itemId);
+                }
+            };
+
+            function handleQuantityInput(event) {
+                const input = event.target;
+                const itemId = input.dataset.itemId;
+                if (!itemId) return;
+                const sanitized = sanitizeQuantity(input.value);
+                if (sanitized !== Number(input.value) || (event.type === 'blur' && input.value === '')) {
+                    input.value = sanitized;
+                }
+                setItemQuantity(itemId, sanitized);
+                updateWhatsAppLink();
+                updateSelectionFeedback();
+            }
+
+            function handleQuantityButtonClick(event) {
+                const button = event.currentTarget;
+                const itemId = button.dataset.itemId;
+                if (!itemId) return;
+                const input = menuContainer.querySelector(`.item-quantity[data-item-id="${itemId}"]`);
+                if (!input) return;
+                let currentValue = sanitizeQuantity(input.value);
+                currentValue = button.dataset.action === 'increment'
+                    ? currentValue + 1
+                    : Math.max(0, currentValue - 1);
+                input.value = currentValue;
+                setItemQuantity(itemId, currentValue);
+                updateWhatsAppLink();
+                updateSelectionFeedback();
+            }
+
             function getSelectedItemsData() {
                 const selected = [];
-                let total = 0;
-                selectedItemIds.forEach((itemId) => {
-                    const item = findItemById(itemId);
-                    if (item) {
-                        selected.push(item.name);
-                        if (typeof item.price === 'number' && item.price > 0) {
-                            total += Number(item.price);
+                let totalPerHamper = 0;
+                let totalUnits = 0;
+
+                itemQuantities.forEach((quantity, itemId) => {
+                    if (quantity > 0) {
+                        const item = findItemById(itemId);
+                        if (item) {
+                            const price = typeof item.price === 'number' ? Number(item.price) : 0;
+                            selected.push({ id: itemId, name: item.name, quantity, price });
+                            totalUnits += quantity;
+                            if (price > 0) {
+                                totalPerHamper += price * quantity;
+                            }
                         }
                     }
                 });
-                return { selected, total };
+
+                const hamperQty = sanitizeHamperQuantity(hamperQuantityInput ? hamperQuantityInput.value : 1);
+                const total = totalPerHamper * hamperQty;
+                const hasPricedItems = selected.some(item => item.price > 0);
+                const hasMissingPrices = selected.some(item => item.price <= 0);
+
+                return { selected, totalPerHamper, total, hamperQty, totalUnits, hasPricedItems, hasMissingPrices };
             }
 
             function updateWhatsAppLink() {
                 const base = "https://wa.me/917705982880?text=";
-                const { selected, total } = getSelectedItemsData();
+                const { selected, totalPerHamper, total, hamperQty } = getSelectedItemsData();
                 let message;
                 if (selected.length > 0) {
-                    const itemLines = selected.join('\n- ');
-                    const priceLine = total > 0 ? `\n\nEstimated total: ₹${total} (excluding packaging).` : `\n\nKindly confirm the pricing for these items.`;
-                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${itemLines}${priceLine}\n\nMy desired pickup date and time is: [Please specify]`;
+                    const itemLines = selected.map(item => `${item.quantity} x ${item.name}`).join('\n- ');
+                    const priceLine = totalPerHamper > 0
+                        ? `\n\nEstimated total for ${hamperQty} hamper(s): ₹${total} (excluding packaging).`
+                        : `\n\nKindly confirm the pricing for these items.`;
+                    message = `Hi! I'd like to order ${hamperQty} hamper(s) with the following items per hamper:\n\n- ${itemLines}${priceLine}\n\nMy desired pickup date and time is: [Please specify]`;
                 } else {
                     message = "Hi! I'd like to place an order for a Diwali hamper.";
                 }
@@ -482,14 +557,16 @@
             }
 
             function updateSelectionFeedback() {
-                const { selected, total } = getSelectedItemsData();
+                const { selected, totalPerHamper, total, hamperQty, totalUnits } = getSelectedItemsData();
                 if (selected.length === 0) {
                     selectionFeedback.textContent = `Select items or click names for details.`;
-                } else if (total > 0) {
-                    selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
-                } else {
-                    selectionFeedback.textContent = `${selected.length} item(s) selected • Pricing on request`;
+                    return;
                 }
+
+                const unitsLabel = totalUnits === 1 ? '1 unit' : `${totalUnits} units`;
+                let summary = `${selected.length} item(s) • ${unitsLabel} per hamper • ${hamperQty} hamper(s)`;
+                summary += totalPerHamper > 0 ? ` • Est. total ₹${total}` : ` • Pricing on request`;
+                selectionFeedback.textContent = summary;
             }
 
             function renderMenu() {
@@ -517,19 +594,29 @@
                     menuContainer.appendChild(headerWrapper);
 
                     filteredItems.forEach((item) => {
-                        const label = document.createElement('label');
-                        label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
                         const hasPrice = typeof item.price === 'number' && item.price > 0;
-                        const priceDataValue = hasPrice ? item.price : '';
                         const priceDisplay = hasPrice ? `₹${item.price}` : 'Price on request';
-                        label.innerHTML = `
-                            <div class="flex items-center">
-                                <input type="checkbox" id="${item.id}" data-price="${priceDataValue}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}" ${selectedItemIds.has(item.id) ? 'checked' : ''}>
-                                <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
+                        const quantityValue = itemQuantities.get(item.id) ?? 0;
+
+                        const row = document.createElement('div');
+                        row.className = 'border-b border-dashed border-gray-300 py-3 px-2 rounded-md hover:bg-gray-50';
+                        row.innerHTML = `
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center justify-between gap-4">
+                                    <span class="font-semibold item-name cursor-pointer" data-item-id="${item.id}">${item.name}</span>
+                                    <span class="font-bold text-[#1E434B]">${priceDisplay}</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-4 text-sm text-gray-600">
+                                    <span>Quantity per hamper</span>
+                                    <div class="flex items-center gap-2">
+                                        <button type="button" class="qty-btn px-2 py-1 border border-gray-300 rounded-md text-[#1E434B] hover:bg-[#1E434B]/10 transition" data-item-id="${item.id}" data-action="decrement" aria-label="Decrease quantity for ${item.name}">-</button>
+                                        <input type="number" min="0" value="${quantityValue}" class="item-quantity w-16 text-center border border-gray-300 rounded-md py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E434B]" data-item-id="${item.id}" data-item-name="${item.name}">
+                                        <button type="button" class="qty-btn px-2 py-1 border border-gray-300 rounded-md text-[#1E434B] hover:bg-[#1E434B]/10 transition" data-item-id="${item.id}" data-action="increment" aria-label="Increase quantity for ${item.name}">+</button>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="font-bold text-[#1E434B]">${priceDisplay}</span>
                         `;
-                        menuContainer.appendChild(label);
+                        menuContainer.appendChild(row);
                         renderedCount += 1;
                     });
                 });
@@ -541,17 +628,15 @@
                     menuContainer.appendChild(emptyState);
                 }
 
-                itemCheckboxes = Array.from(document.querySelectorAll('.item-checkbox'));
-                itemCheckboxes.forEach((checkbox) => {
-                    checkbox.addEventListener('change', () => {
-                        if (checkbox.checked) {
-                            selectedItemIds.add(checkbox.id);
-                        } else {
-                            selectedItemIds.delete(checkbox.id);
-                        }
-                        updateWhatsAppLink();
-                        updateSelectionFeedback();
-                    });
+                quantityInputs = Array.from(menuContainer.querySelectorAll('.item-quantity'));
+                quantityInputs.forEach((input) => {
+                    input.addEventListener('input', handleQuantityInput);
+                    input.addEventListener('blur', handleQuantityInput);
+                });
+
+                const quantityButtons = Array.from(menuContainer.querySelectorAll('.qty-btn'));
+                quantityButtons.forEach((button) => {
+                    button.addEventListener('click', handleQuantityButtonClick);
                 });
 
                 updateWhatsAppLink();
@@ -595,6 +680,20 @@
                     renderCategoryFilters();
                     renderMenu();
                 });
+            }
+
+            if (hamperQuantityInput) {
+                const handleHamperInput = () => {
+                    updateWhatsAppLink();
+                    updateSelectionFeedback();
+                };
+                const handleHamperBlur = () => {
+                    hamperQuantityInput.value = sanitizeHamperQuantity(hamperQuantityInput.value);
+                    updateWhatsAppLink();
+                    updateSelectionFeedback();
+                };
+                hamperQuantityInput.addEventListener('input', handleHamperInput);
+                hamperQuantityInput.addEventListener('blur', handleHamperBlur);
             }
 
             renderCategoryFilters();
