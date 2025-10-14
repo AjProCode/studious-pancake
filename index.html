@@ -295,6 +295,16 @@
             <img id="modal-img" src="" alt="Item image" class="w-full h-64 object-cover rounded-md mb-4">
             <h3 id="modal-title" class="text-2xl font-bold text-[#1E434B] mb-2"></h3>
             <p id="modal-desc" class="text-gray-600 mb-4"></p>
+            <div class="space-y-3 mb-4">
+                <div>
+                    <h4 class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase">Storage</h4>
+                    <p id="modal-storage" class="text-sm text-gray-600"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-semibold tracking-wide text-[#1E434B] uppercase">Shelf Life</h4>
+                    <p id="modal-shelf" class="text-sm text-gray-600"></p>
+                </div>
+            </div>
             <div class="flex justify-between items-center">
                 <span id="modal-price" class="text-xl font-bold text-[#1E434B]"></span>
                 <span class="text-sm text-gray-500">150g approx</span>
@@ -313,32 +323,61 @@
             // --- Data ---
             const menuData = [
                 {
-                    category: "Sweet Treats",
+                    category: "Cakes & Pies",
                     items: [
-                        { id: "motichoor-rose-cake", name: "Motichoor Rose Cake", price: 250, image: 'Photos/MCRC.jpeg', description: "Think laddoo meets bouquet - The joy of motichoor meets the romance of roses in this festive show-stopper cake." },
-                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/1.jpg', description: "Tangy, creamy, dreamy — lemon cheesecake turned into poppable little truffles." },
-                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Bite-sized, crinkled, and ready to charm." },
-                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Golden citrus and sugar sparkle in every delicate crinkle bite." },
-                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB1.jpeg', description: "Thin, crisp, chocolatey — festive snacking at its best." },
-                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/NFB.jpeg', description: "A little bite, a lot of Nutella love." },
-                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/BK.jpeg', description: "Not your nani’s katli — this one’s loaded with extra almond bling." },
-                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/4.jpg', description: "Grandma’s sattu, apricot’s sass — all in one bar." },
-                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/MAIN.jpg', description: "Gluten-free, fudgy, and crunchy - A festive bite of guilt-free joy." },
-                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/MAIN.jpeg', description: "The beloved Karachi biscuit — festive, fruity, and forever timeless." },
-                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/MAIN.jpeg', description: "An artisanal blend inspired by the iconic Calcutta paan — refreshing, and indulgent." },
-                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/MAIN.jpeg', description: "Espresso buzz meets hazelnut crunch." },
-                        { id: "choco-chunk-cookies", name: "Choco Chunk Cookies", price: 150, image: 'Photos/ccc.jpeg', description: "Classic cookies overloaded with gooey chocolate chunks." },
-                        { id: "jar-cakes", name: "Jar Cakes", price: 100, image: 'Photos/jc.jpeg', description: "Moist, layered cakes in a jar — perfect for gifting or indulging solo." }
+                        { id: "kunafa-cookie-pie", name: "Kunafa Cookie Pie", price: 320, image: 'Photos/MAIN.jpeg', description: "A buttery cookie crust layered with kunafa and finished with pistachio crunch.", storage: "Store in an airtight container.", shelfLife: "1-2 days at room temperature; up to 1 week refrigerated." },
+                        { id: "motichoor-rose-cake", name: "Motichoor Rose Tea Cake", price: 250, image: 'Photos/MCRC.jpeg', description: "Motichoor laddoo notes meet rose infused sponge for a festive tea time cake.", storage: "Store in an airtight container.", shelfLife: "1-2 days at room temperature; up to 1 week refrigerated." },
+                        { id: "almond-cardamom-frangipane", name: "Almond Cardamom Frangipane Cake", price: 280, image: 'Photos/MAIN.jpeg', description: "Fragrant almond frangipane baked with warm cardamom for a luxe tea cake.", storage: "Store in an airtight container.", shelfLife: "1-2 days at room temperature; up to 1 week refrigerated." },
+                        { id: "jar-cakes", name: "Jar Cakes", price: 220, image: 'Photos/MAIN.jpeg', description: "Layered desserts packed into individual jars for gifting or solo indulgence.", storage: "Keep jars sealed and refrigerated.", shelfLife: "Best within 4 days refrigerated; keep chilled until serving." }
                     ]
                 },
                 {
-                    category: "Savory Treats",
+                    category: "Cookies & Biscuits",
                     items: [
-                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/MAIN.jpeg', description: "Your bagel seasoning, now on a crunch." },
-                        { id: "chili-lime-millet", name: "Chili Lime Millet Snack Pack", price: 150, image: 'Photos/MAIN.jpeg', description: "Bright, spicy, and addictive enough to share (or not)." },
-                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/sc.jpeg', description: "Nuts just got hotter." },
-                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/MAIN.jpeg', description: "Sesame crunch, Parmesan punch." },
-                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/MAIN.jpeg', description: "Celebrating health and flavour — millets baked into crisp golden crackers." }
+                        { id: "red-velvet-crinkle", name: "Red Velvet Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Bite sized red velvet cookies with a classic crinkle crust.", storage: "Store in an airtight container at room temperature; add moisture absorbers for longer storage.", shelfLife: "Up to 10 days at room temperature." },
+                        { id: "citrus-crinkle", name: "Citrus Crinkle Buttons", price: 150, image: 'Photos/MAIN.jpeg', description: "Bright citrus cookies rolled in sugar for a sparkling crinkle finish.", storage: "Store in an airtight container at room temperature; add moisture absorbers for longer storage.", shelfLife: "Up to 10 days at room temperature." },
+                        { id: "churro-cookies", name: "Churro Cookies", price: 160, image: 'Photos/MAIN.jpeg', description: "Soft cinnamon sugar cookies inspired by classic churros.", storage: "Store in an airtight container at room temperature; add moisture absorbers for longer storage.", shelfLife: "Up to 8 days at room temperature." },
+                        { id: "karachi-biscuit", name: "Karachi Biscuit", price: 150, image: 'Photos/MAIN.jpeg', description: "Fruity, buttery biscuits packed with tutti frutti nostalgia.", storage: "Store in an airtight container at room temperature; individually seal for longer storage.", shelfLife: "Up to 2 weeks at room temperature." },
+                        { id: "brownie-brittle", name: "Brownie Brittle", price: 200, image: 'Photos/BB1.jpeg', description: "Thin, crisp chocolate brownie shards for snacking or gifting.", storage: "Store in an airtight container; refrigerate if the chocolate softens.", shelfLife: "Up to 5 days at room temperature; refrigerate if needed." },
+                        { id: "choco-chunk-cookies", name: "Choco Chunk Cookies", price: 180, image: 'Photos/MAIN.jpeg', description: "Classic cookies loaded with melty chocolate chunks.", storage: "Store in an airtight container at room temperature.", shelfLife: "Up to 7 days at room temperature." }
+                    ]
+                },
+                {
+                    category: "Savory Snacks",
+                    items: [
+                        { id: "spinach-garlic-sticks", name: "Spinach Garlic Sticks", price: 175, image: 'Photos/MAIN.jpeg', description: "Crisp savory batons infused with spinach and garlic.", storage: "Store in an airtight container at room temperature; reheat to refresh.", shelfLife: "Up to 2 weeks at room temperature; refresh in a 150C oven for 3-4 minutes." },
+                        { id: "black-sesame-sticks", name: "Black Sesame Parmesan Sticks", price: 175, image: 'Photos/MAIN.jpeg', description: "Savory sticks with nutty sesame and parmesan crunch.", storage: "Store in an airtight container at room temperature; reheat to refresh.", shelfLife: "Up to 2 weeks at room temperature; refresh in a 150C oven for 3-4 minutes." },
+                        { id: "multi-millet-crackers", name: "Multi Millet Crackers", price: 120, image: 'Photos/MAIN.jpeg', description: "Golden crackers baked with a blend of nutrient rich millets.", storage: "Store in an airtight container at room temperature; re-crisp in the oven if needed.", shelfLife: "Up to 2 weeks at room temperature; re-crisp in a 150C oven for 3-4 minutes." },
+                        { id: "everything-bagel-makhana", name: "Everything Bagel Makhana Mix", price: 200, image: 'Photos/MAIN.jpeg', description: "Popped makhana tossed in our everything bagel seasoning.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 2 weeks at room temperature." },
+                        { id: "chili-lime-millet", name: "Chilli Lime Millet Snack Mix", price: 150, image: 'Photos/MAIN.jpeg', description: "Zesty millet based mix with bright lime and chili heat.", storage: "Store in a clean airtight container away from moisture and direct sunlight; add moisture absorbers for longer storage.", shelfLife: "Up to 3 weeks at room temperature." },
+                        { id: "sriracha-cashews", name: "Sriracha Cashews", price: 250, image: 'Photos/MAIN.jpeg', description: "Crunchy cashews coated in a bold sriracha glaze.", storage: "Store in a clean airtight container in the refrigerator away from direct sunlight.", shelfLife: "Up to 10 days at room temperature; up to 5 weeks refrigerated." },
+                        { id: "espresso-hazelnuts", name: "Espresso Frosted Hazelnuts", price: 250, image: 'Photos/MAIN.jpeg', description: "Roasted hazelnuts dusted with espresso kissed frosting.", storage: "Store in a clean airtight container in a cool, dry place.", shelfLife: "Up to 4 weeks at room temperature." }
+                    ]
+                },
+                {
+                    category: "Fudge, Bites & Truffles",
+                    items: [
+                        { id: "ragi-crunch", name: "Ragi Crunch Fudge Bites (4 pcs)", price: 150, image: 'Photos/MAIN.jpg', description: "Gluten free ragi fudge with a satisfying crunch.", storage: "Store in an airtight container in the refrigerator or a cool, dry place; freeze for longer storage.", shelfLife: "Up to 3 days at room temperature; up to 2 weeks refrigerated; up to 1 month frozen." },
+                        { id: "nutella-fudge", name: "Nutella Fudge Bites (4 pcs)", price: 200, image: 'Photos/NFB.jpeg', description: "Soft hazelnut fudge bites packed with Nutella.", storage: "Store in an airtight container in the refrigerator or a cool, dry place.", shelfLife: "Up to 3 days at room temperature; up to 2 weeks refrigerated." },
+                        { id: "sattu-apricot", name: "Sattu Apricot Bites (4 pcs)", price: 200, image: 'Photos/4.jpg', description: "Protein rich sattu bars balanced with chewy apricot.", storage: "Store in an airtight container in the refrigerator or a cool, dry place.", shelfLife: "Up to 48 hours at room temperature; up to 5 days refrigerated." },
+                        { id: "lemon-cheesecake-truffles", name: "Lemon Cheesecake Truffles (4 pcs)", price: 200, image: 'Photos/1.jpg', description: "Tangy lemon cheesecake rolled into bite sized truffles.", storage: "Store in an airtight container in the refrigerator or a cool, dry place.", shelfLife: "Up to 2 days at room temperature; up to 8 days refrigerated." },
+                        { id: "cashew-praline-truffles", name: "Cashew Praline Truffles (4 pcs)", price: 220, image: 'Photos/MAIN.jpeg', description: "Rich praline truffles studded with toasted cashews.", storage: "Store in an airtight container in the refrigerator or a cool, dry place.", shelfLife: "Up to 2 days at room temperature; up to 10 days refrigerated." },
+                        { id: "quinoa-almond-rocks", name: "Quinoa Almond Rocks", price: 180, image: 'Photos/MAIN.jpeg', description: "Crunchy quinoa clusters bound with roasted almonds.", storage: "Store in an airtight container.", shelfLife: "Up to 10 days at room temperature; up to 3 weeks refrigerated." }
+                    ]
+                },
+                {
+                    category: "Sauces, Spreads & Ganaches",
+                    items: [
+                        { id: "hot-fudge-sauce", name: "Hot Fudge Sauce", price: 200, image: 'Photos/MAIN.jpeg', description: "Silky chocolate fudge sauce ready to warm and pour.", storage: "Store in a clean airtight container in the refrigerator.", shelfLife: "Up to 2 weeks refrigerated." },
+                        { id: "vegan-cheese-spread", name: "Vegan Cheese Spread", price: 180, image: 'Photos/MAIN.jpeg', description: "Savory vegan cheese style spread for crackers or crudite.", storage: "Refrigerate immediately in a clean, dry glass jar with an airtight lid.", shelfLife: "Up to 3 days refrigerated." }
+                    ]
+                },
+                {
+                    category: "Other Sweets & Mukhwas",
+                    items: [
+                        { id: "calcutta-paan", name: "Calcutta Paan Mukhwas", price: 150, image: 'Photos/MAIN.jpeg', description: "A refreshing mukhwas inspired by classic Calcutta paan.", storage: "Store in a clean, dry, airtight glass or steel container away from direct sunlight; refrigerate for longer storage.", shelfLife: "Up to 10 days at room temperature; up to 1 month refrigerated." },
+                        { id: "millet-cranberry-mukhwas", name: "Millet Cranberry Mukhwas", price: 150, image: 'Photos/MAIN.jpeg', description: "Crunchy millet based mukhwas balanced with tart cranberries.", storage: "Store in a clean, dry, airtight glass or steel container away from direct sunlight; refrigerate for longer storage.", shelfLife: "Up to 10 days at room temperature; up to 1 month refrigerated." },
+                        { id: "loaded-badam-katli", name: "Loaded Badam Katli (4 pcs)", price: 240, image: 'Photos/BK.jpeg', description: "Almond katli enriched with extra nuts for a luxe bite.", storage: "Store in an airtight container in a cool, dry place.", shelfLife: "Up to 3 days at room temperature; up to 10 days refrigerated in individual packs." }
                     ]
                 }
             ];
@@ -356,6 +395,12 @@
             const itemModal = document.getElementById('item-modal');
             const modalContent = document.getElementById('modal-content');
             const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalImage = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalPrice = document.getElementById('modal-price');
+            const modalStorage = document.getElementById('modal-storage');
+            const modalShelf = document.getElementById('modal-shelf');
             const preloader = document.getElementById('preloader');
             const desktopNav = document.getElementById('desktop-nav');
 
@@ -375,12 +420,15 @@
                 section.items.forEach((item) => {
                     const label = document.createElement('label');
                     label.className = 'flex items-center justify-between border-b border-dashed border-gray-300 py-3 px-2 hover:bg-gray-50 rounded-md cursor-pointer';
+                    const hasPrice = typeof item.price === 'number' && item.price > 0;
+                    const priceDataValue = hasPrice ? item.price : '';
+                    const priceDisplay = hasPrice ? `₹${item.price}` : 'Price on request';
                     label.innerHTML = `
                         <div class="flex items-center">
-                            <input type="checkbox" id="${item.id}" data-price="${item.price}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}">
+                            <input type="checkbox" id="${item.id}" data-price="${priceDataValue}" class="form-checkbox h-5 w-5 text-[#1E434B] rounded focus:ring-[#1E434B] mr-4 item-checkbox" value="${item.name}">
                             <span class="font-semibold item-name" data-item-id="${item.id}">${item.name}</span>
                         </div>
-                        <span class="font-bold text-[#1E434B]">₹${item.price}</span>
+                        <span class="font-bold text-[#1E434B]">${priceDisplay}</span>
                     `;
                     menuContainer.appendChild(label);
                 });
@@ -405,7 +453,9 @@
                 const { selected, total } = getSelectedItemsData();
                 let message;
                 if (selected.length > 0) {
-                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${selected.join('\n- ')}\n\nEstimated total: ₹${total} (excluding packaging). My desired pickup date and time is: [Please specify]`;
+                    const itemLines = selected.join('\n- ');
+                    const priceLine = total > 0 ? `\n\nEstimated total: ₹${total} (excluding packaging).` : `\n\nKindly confirm the pricing for these items.`;
+                    message = `Hi! I'd like to order a Diwali hamper with the following items (one of each):\n\n- ${itemLines}${priceLine}\n\nMy desired pickup date and time is: [Please specify]`;
                 } else {
                     message = "Hi! I'd like to place an order for a Diwali hamper.";
                 }
@@ -419,8 +469,10 @@
                 const { selected, total } = getSelectedItemsData();
                 if (selected.length === 0) {
                     selectionFeedback.textContent = `Select items or click names for details.`;
-                } else {
+                } else if (total > 0) {
                     selectionFeedback.textContent = `${selected.length} item(s) selected • Est. total ₹${total}`;
+                } else {
+                    selectionFeedback.textContent = `${selected.length} item(s) selected • Pricing on request`;
                 }
             };
 
@@ -438,11 +490,13 @@
                     const allItems = menuData.flatMap(cat => cat.items);
                     const item = allItems.find(i => i.id === itemId);
                     if (item) {
-                        document.getElementById('modal-img').src = item.image;
-                        document.getElementById('modal-img').alt = item.name;
-                        document.getElementById('modal-title').textContent = item.name;
-                        document.getElementById('modal-desc').textContent = item.description;
-                        document.getElementById('modal-price').textContent = `₹${item.price}`;
+                        modalImage.src = item.image;
+                        modalImage.alt = item.name;
+                        modalTitle.textContent = item.name;
+                        modalDesc.textContent = item.description;
+                        modalPrice.textContent = (typeof item.price === 'number' && item.price > 0) ? `₹${item.price}` : 'Price on request';
+                        modalStorage.textContent = item.storage || 'Storage guidance coming soon.';
+                        modalShelf.textContent = item.shelfLife || 'Shelf life details coming soon.';
                         itemModal.classList.remove('opacity-0', 'pointer-events-none');
                         modalContent.classList.remove('scale-95', 'opacity-0');
                     }
