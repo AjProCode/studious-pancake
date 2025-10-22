@@ -1,0 +1,43 @@
+/* CSS for large "SOLD OUT" stamp overlay */
+.sold-out-container { position: relative; display: inline-block; }
+
+.sold-out-stamp {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 9999;
+    transform: rotate(-18deg);
+    mix-blend-mode: normal;
+}
+
+.sold-out-stamp img {
+    width: 140%;
+    max-width: none;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+}
+
+.sold-out-stamp.opaque::before {
+    content: "";
+    position: absolute;
+    inset: 14% 6%;
+    background: #fff;
+    z-index: 9998;
+    transform: rotate(-18deg);
+    border-radius: 6px;
+}
+
+.sold-out-stamp.blur::before {
+    content: "";
+    position: absolute;
+    inset: 12% 4%;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(6px) saturate(120%);
+    z-index: 9998;
+    transform: rotate(-18deg);
+    border-radius: 6px;
+}
